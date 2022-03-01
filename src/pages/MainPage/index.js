@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-import { FolderTree, StepProgressBar } from "../../components/organisms";
+import { FileTree, StepProgressBar } from "../../components/organisms";
 import { MainTemplate, TooltipModal } from "../../components/templates";
 
 const MainPage = () => {
@@ -9,7 +9,7 @@ const MainPage = () => {
       <TooltipModal direction="left" />
       <MainTemplate
         visualContent={<StepProgressBar labels={["step1", "step2", "step3"]} />}
-        codeContent={<FolderTree />}
+        codeContent={<FileTree />}
       />
     </>
   );
