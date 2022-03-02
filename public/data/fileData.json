@@ -1,0 +1,37 @@
+{
+  "folders": [
+    { "id": "f0001", "type": "folder", "name": "public", "child": null },
+    {
+      "id": "f0002",
+      "type": "folder",
+      "name": "src",
+      "child": [
+        { "id": "f0003", "type": "file", "name": "index.js" },
+        { "id": "f0004", "type": "file", "name": "App.js" },
+        {
+          "id": "f0005",
+          "type": "folder",
+          "name": "app",
+          "child": [{ "id": "f0006", "type": "file", "name": "store.js" }]
+        },
+        {
+          "id": "f0007",
+          "type": "folder",
+          "name": "feature",
+          "child": [
+            {
+              "id": "f0008",
+              "type": "folder",
+              "name": "counter",
+              "child": [
+                { "id": "f0009", "type": "file", "name": "Counter.js" },
+                { "id": "f0010", "type": "file", "name": "counterSlice.js" }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    { "id": "f0011", "type": "file", "name": "package.json", "child": null }
+  ]
+}
