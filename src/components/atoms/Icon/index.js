@@ -2,6 +2,7 @@ import React from "react";
 
 import PropTypes from "prop-types";
 import { FaFileCode, FaFolderOpen } from "react-icons/fa";
+import { BiChevronLeft, BiChevronRight } from "react-icons/bi";
 import styled from "styled-components";
 
 import themes from "../../../styles/theme";
@@ -14,6 +15,10 @@ const getIcon = (type) => {
       return <FaFolderOpen />;
     case "file":
       return <FaFileCode />;
+    case "prev":
+      return <BiChevronLeft />;
+    case "next":
+      return <BiChevronRight />;
   }
 };
 
