@@ -3,9 +3,10 @@ import React from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
 
+import { Portal } from "..";
 import { Header } from "../../organisms";
 
-const MainTemplate = ({ visualContent, codeContent }) => {
+const MainTemplate = ({ visualContent, codeContent, modalContent }) => {
   return (
     <Container>
       <Header />
@@ -13,6 +14,7 @@ const MainTemplate = ({ visualContent, codeContent }) => {
         <VisualizeBoard>{visualContent}</VisualizeBoard>
         <CodeEditorBoard>{codeContent}</CodeEditorBoard>
       </ContentWrapper>
+      <Portal>{modalContent}</Portal>
     </Container>
   );
 };
@@ -20,6 +22,7 @@ const MainTemplate = ({ visualContent, codeContent }) => {
 MainTemplate.propTypes = {
   visualContent: PropTypes.oneOfType([PropTypes.arrayOf(PropTypes.node), PropTypes.node, PropTypes.element]).isRequired,
   codeContent: PropTypes.oneOfType([PropTypes.arrayOf(PropTypes.node), PropTypes.node, PropTypes.element]).isRequired,
+  modalContent: PropTypes.oneOfType([PropTypes.arrayOf(PropTypes.node), PropTypes.node, PropTypes.element]).isRequired,
 };
 
 export default MainTemplate;
