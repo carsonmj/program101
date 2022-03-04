@@ -53,11 +53,12 @@ const linearColors = {
 };
 
 const opacityColors = {
-  grayblue_1: "787EAB",
-  deepblue_1: "ABCBFC",
-  blue_1: "ABD0FC",
-  pink_1: "FCABAB",
-  yellow_1: "FCE5AB",
+  gray_1: "#c4c4c45c",
+  grayblue_1: "#787EAB",
+  deepblue_1: "#ABCBFC",
+  blue_1: "#ABD0FC",
+  pink_1: "#FCABAB",
+  yellow_1: "#FCE5AB",
 };
 
 const theme = { fontSizes, fontWeights, space, colors, linearColors, opacityColors, iconSize };

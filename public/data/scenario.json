@@ -1,0 +1,111 @@
+{
+  "head": "tt0001",
+  "tail": null,
+  "tt0001": {
+    "id": "tt0001",
+    "prev": null,
+    "next": "tt0002",
+    "type": "description",
+    "modalType": "welcome",
+    "description": [{ "tag": "h2", "text": "Welcome to Program 101!" }],
+    "file": null
+  },
+  "tt0002": {
+    "id": "tt0002",
+    "prev": "tt0001",
+    "next": "tt0003",
+    "type": "description",
+    "modalType": "default",
+    "description": [
+      {
+        "tag": "h4",
+        "text": "이 튜토리얼은 다음 사항을 알고 있다고 가정합니다."
+      },
+      {
+        "tag": "ul",
+        "direction": "row",
+        "text": [
+          {
+            "tag": "li",
+            "text": "HTML 및 CSS"
+          },
+          {
+            "tag": "li",
+            "text": "ES6 구문 및 기능"
+          },
+          {
+            "tag": "li",
+            "text": "React에 대한 지식"
+          },
+          {
+            "tag": "p",
+            "text": "(JSX, State, Functional Component, Props 및 Hooks)"
+          }
+        ]
+      },
+      {
+        "tag": "h5",
+        "text": "해당 주제가 익숙하지 않다면 아래 링크에서 학습 후 진행하시는 것을 추천합니다."
+      },
+      {
+        "tag": "a",
+        "text": "링크 바로가기",
+        "href": "https://book.vanillacoding.co/starter-kit/"
+      }
+    ],
+    "file": null
+  },
+  "tt0003": {
+    "id": "tt0003",
+    "prev": "tt0002",
+    "next": "tt0004",
+    "type": "description",
+    "modalType": "default",
+    "description": [
+      {
+        "tag": "div",
+        "direction": "column",
+        "text": [
+          { "tag": "Icon", "type": "alert" },
+          {
+            "tag": "h4",
+            "text": "튜토리얼에서는 Redux toolkit을 사용합니다. toolkit은 Redux 로직을 작성하는 데 권장되는 방법입니다."
+          }
+        ]
+      },
+      { "tag": "h3", "text": "What is Redux?" },
+      {
+        "tag": "pre",
+        "text": "'액션'이라는 이벤트를 사용하여 애플리케이션 상태를 관리하고 업데이트하기 위한 패턴과 라이브러리 입니다.\nstate(상태)가 예측 가능한 방식으로만 업데이트될 수 있도록 “단방향 데이터 흐름” 규칙과 함께 전체 state(상태)에 대한 중앙 저장소 역할을 합니다."
+      },
+      {
+        "tag": "div",
+        "direction": "column",
+        "text": [
+          { "tag": "img", "src": "" },
+          { "tag": "img", "src": "" }
+        ]
+      }
+    ],
+    "file": null
+  },
+  "tt0004": {
+    "id": "tt0004",
+    "prev": "tt0003",
+    "next": null,
+    "type": "description",
+    "modalType": "default",
+    "description": [
+      { "tag": "h3", "text": "카운트 예제와 함께 Redux에 대해 배워볼까요?" },
+      {
+        "tag": "div",
+        "direction": "row",
+        "text": [
+          { "tag": "h3", "text": "+ 버튼을 클릭하면 count가 1씩 증가합니다." },
+          { "tag": "h3", "text": "ㅡ 버튼을 클릭하면 count가 1씩 감소합니다." }
+        ]
+      }
+    ],
+    "file": null
+  }
+}

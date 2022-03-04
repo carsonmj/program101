@@ -84,10 +84,12 @@ const Container = styled.button`
 
   &:hover {
     transform: scale(1.1);
+    border: 0.1rem solid ${(props) => props.color};
     background-color: ${({ theme }) => theme.colors.white_1};
     color: ${(props) => props.color};
   }
   &:active {
+    border: 0.1rem solid ${(props) => props.color};
     background-color: ${({ theme }) => theme.colors.white_1};
     color: ${(props) => props.color};
   }

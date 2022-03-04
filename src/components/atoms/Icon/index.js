@@ -2,7 +2,7 @@ import React from "react";
 
 import PropTypes from "prop-types";
 import { FaFileCode, FaFolderOpen } from "react-icons/fa";
-import { BiChevronLeft, BiChevronRight } from "react-icons/bi";
+import { BiChevronLeft, BiChevronRight, BiX } from "react-icons/bi";
 import styled from "styled-components";
 
 import themes from "../../../styles/theme";
@@ -19,6 +19,8 @@ const getIcon = (type) => {
       return <BiChevronLeft />;
     case "next":
       return <BiChevronRight />;
+    case "close":
+      return <BiX />;
   }
 };
 
@@ -28,15 +30,13 @@ const Icon = ({ type, ...props }) => {
 
 Icon.propTypes = {
   type: PropTypes.string.isRequired,
+  color: PropTypes.string,
   size: PropTypes.string,
-  fill: PropTypes.string,
-  stroke: PropTypes.string,
 };
 
 Icon.defaultProps = {
   size: "sm",
-  fill: colors.white_1,
-  stroke: colors.white_1,
+  color: colors.white_1,
 };
 
 export default Icon;
@@ -45,11 +45,10 @@ const Wrapper = styled.span`
   display: inline-block;
   width: ${({ theme, size }) => theme.iconSize[size]};
   height: ${({ theme, size }) => theme.iconSize[size]};
+  color: ${({ color }) => color};
 
   & > svg {
     width: 100%;
     height: 100%;
-    fill: ${(props) => props.fill};
-    stroke: ${(props) => props.stroke};
   }
 `;
