@@ -73,6 +73,12 @@ const Container = styled.button`
           height: 4rem;
           font-size: ${({ theme }) => theme.fontSizes.lg};
         `;
+      case "long":
+        return `
+          width: 15rem;
+          height: 3.5rem;
+          font-size: ${({ theme }) => theme.fontSizes.md};
+        `;
       default:
         return `
           width: 8rem;
