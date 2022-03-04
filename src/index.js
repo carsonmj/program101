@@ -9,16 +9,16 @@ import createStore from "./configureStore";
 import GlobalStyle from "./styles/GlobalStyle";
 import theme from "./styles/theme";
 
-// const store = createStore();
+const store = createStore();
 
 ReactDOM.render(
   <React.StrictMode>
-    {/* <Provider store={store}> */}
-    <ThemeProvider theme={theme}>
-      <GlobalStyle />
-      <App />
-    </ThemeProvider>
-    {/* </Provider> */}
+    <Provider store={store}>
+      <ThemeProvider theme={theme}>
+        <GlobalStyle />
+        <App />
+      </ThemeProvider>
+    </Provider>
   </React.StrictMode>,
   document.getElementById("root"),
 );
