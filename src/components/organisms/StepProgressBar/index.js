@@ -25,7 +25,7 @@ const Container = styled.div`
   width: 100%;
 `;
 
-const ProgressBar = styled.div`
+const ProgressBar = styled.ul`
   counter-reset: step;
 
   li {
@@ -33,11 +33,11 @@ const ProgressBar = styled.div`
     width: 33.33%;
     position: relative;
     text-align: center;
-    z-index: 1;
     color: ${({ theme }) => theme.colors.white_1};
   }
 
   li:before {
+    position: relative;
     content: "";
     counter-increment: step;
     width: 2rem;
@@ -48,7 +48,7 @@ const ProgressBar = styled.div`
     text-align: center;
     margin: 0 auto 1rem auto;
     background: ${({ theme }) => theme.colors.white_1};
-    z-index: 0;
+    z-index: 2;
   }
 
   li:after {
@@ -59,7 +59,7 @@ const ProgressBar = styled.div`
     background: ${({ theme }) => theme.colors.white_1};
     top: 1rem;
     left: -50%;
-    z-index: -1;
+    z-index: 1;
   }
 
   li:first-child:after {
