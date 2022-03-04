@@ -6,14 +6,14 @@ import styled from "styled-components";
 
 import { Icon } from "../../atoms";
 
-const StepButton = ({ prevOnClick, nextOnClick }) => {
+const StepButton = ({ onPrevClick, onNextClick }) => {
   return (
     <Container>
-      <PrevButton onClick={prevOnClick}>
+      <PrevButton onClick={onPrevClick}>
         <Icon type="prev" />
         prev
       </PrevButton>
-      <NextButton onClick={nextOnClick}>
+      <NextButton onClick={onNextClick}>
         next
         <Icon type="next" />
       </NextButton>
@@ -22,13 +22,13 @@ const StepButton = ({ prevOnClick, nextOnClick }) => {
 };
 
 StepButton.propTypes = {
-  prevOnClick: PropTypes.func,
-  nextOnClick: PropTypes.func,
+  onPrevClick: PropTypes.func,
+  onNextClick: PropTypes.func,
 };
 
 StepButton.defaultProps = {
-  prevOnClick: noop,
-  nextOnClick: noop,
+  onPrevClick: noop,
+  onNextClick: noop,
 };
 
 export default StepButton;

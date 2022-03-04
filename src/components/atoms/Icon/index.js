@@ -3,6 +3,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import { FaFileCode, FaFolderOpen } from "react-icons/fa";
 import { BiChevronLeft, BiChevronRight, BiX } from "react-icons/bi";
+import { noop } from "lodash";
 import styled from "styled-components";
 
 import themes from "../../../styles/theme";
@@ -24,17 +25,23 @@ const getIcon = (type) => {
   }
 };
 
-const Icon = ({ type, ...props }) => {
-  return <Wrapper {...props}>{getIcon(type)}</Wrapper>;
+const Icon = ({ type, onClick, ...props }) => {
+  return (
+    <Wrapper onClick={onClick} {...props}>
+      {getIcon(type)}
+    </Wrapper>
+  );
 };
 
 Icon.propTypes = {
   type: PropTypes.string.isRequired,
+  onClick: PropTypes.func,
   color: PropTypes.string,
   size: PropTypes.string,
 };
 
 Icon.defaultProps = {
+  onClick: noop,
   size: "sm",
   color: colors.white_1,
 };

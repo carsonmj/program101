@@ -6,22 +6,28 @@ import styled from "styled-components";
 import { Button, Icon } from "../../atoms";
 import themes from "../../../styles/theme";
 
-const GreetingModal = () => {
+const GreetingModal = ({ children, onClickClose, onClickLeftButton }) => {
   return (
     <Overlay>
       <Container>
         <CloseWrapper>
-          <Icon type="close" size="lg" color={themes.colors.gray_1} onClickIcon={() => {}} />
+          <Icon type="close" size="lg" color={themes.colors.gray_1} onClick={onClickClose} />
         </CloseWrapper>
-        <h1>Welcome</h1>
-        <h3>Redux Tutorial</h3>
+        {children}
+        <Text>Redux Tutorial</Text>
         <ButtonWrapper>
-          <Button text="Start Tutorial" size="md" />
-          <Button text="Start Practice" size="md" />
+          <Button text="Start Tutorial" size="long" onClick={onClickLeftButton} />
+          <Button text="Start Practice" size="long" onClick={() => alert("Practice mode 준비중")} />
         </ButtonWrapper>
       </Container>
     </Overlay>
   );
+};
+
+GreetingModal.propTypes = {
+  children: PropTypes.node.isRequired,
+  onClickClose: PropTypes.func.isRequired,
+  onClickLeftButton: PropTypes.func.isRequired,
 };
 
 export default GreetingModal;
@@ -51,6 +57,11 @@ const Container = styled.div`
   background-color: ${({ theme }) => theme.colors.white_1};
 `;
 
+const Text = styled.p`
+  font-size: ${({ theme }) => theme.fontSizes.xxl};
+  color: ${({ theme }) => theme.colors.gray_1};
+`;
+
 const CloseWrapper = styled.div`
   width: 100%;
   text-align: right;
@@ -60,6 +71,7 @@ const CloseWrapper = styled.div`
 const ButtonWrapper = styled.div`
   display: flex;
   justify-content: space-around;
-  min-width: 30rem;
+  min-width: 35rem;
   margin: 4rem 0rem;
+  padding: 0 4rem;
 `;

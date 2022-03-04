@@ -14,9 +14,9 @@ TooltipModal.propTypes = {
 export default TooltipModal;
 
 const TooltipBox = styled.div`
-  position: fixed;
-  top: 200px;
-  left: 100px;
+  position: absolute;
+  // transform: translate(calc(1420px - 930px - 300px), calc(83px + 15px));
+  transform: translate(calc(921px - 729px - 200px), calc(140px - 28px - 50px));
   min-width: 15rem;
   min-height: 10rem;
   height: fit-content;
