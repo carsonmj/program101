@@ -42,6 +42,9 @@ const ContentWrapper = styled.div`
 `;
 
 const VisualizeBoard = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   width: 50%;
   height: 100%;
   background: ${({ theme }) => theme.colors.darkblue_1};
