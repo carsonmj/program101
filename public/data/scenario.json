@@ -92,7 +92,7 @@
   "tt0004": {
     "id": "tt0004",
     "prev": "tt0003",
-    "next": null,
+    "next": "tt0005",
     "type": "description",
     "modalType": "default",
     "description": [
@@ -103,6 +103,26 @@
         "text": [
           { "tag": "h3", "text": "+ 버튼을 클릭하면 count가 1씩 증가합니다." },
           { "tag": "h3", "text": "ㅡ 버튼을 클릭하면 count가 1씩 감소합니다." }
+        ]
+      }
+    ],
+    "file": null
+  },
+  "tt0005": {
+    "id": "tt0005",
+    "prev": "tt0004",
+    "next": "tt0006",
+    "type": "description",
+    "modalType": "tooltip",
+    "modalDirection": "left",
+    "description": [
+      { "tag": "h5", "text": "Redux 튜토리얼에서 설명할 예제의 구조는 다음과 같습니다." },
+      {
+        "tag": "div",
+        "direction": "row",
+        "text": [
+          { "tag": "h4", "text": "index.js는 앱의 시작점입니다." },
+          { "tag": "h4", "text": "App.js는 최상위 React 컴포넌트입니다." }
         ]
       }
     ],
