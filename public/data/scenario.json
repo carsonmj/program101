@@ -92,7 +92,7 @@
   "tt0004": {
     "id": "tt0004",
     "prev": "tt0003",
-    "next": null,
+    "next": "tt0005",
     "type": "description",
     "modalType": "default",
     "description": [
@@ -107,5 +107,441 @@
       }
     ],
     "file": null
+  },
+  "tt0005": {
+    "id": "tt0005",
+    "prev": "tt0004",
+    "next": "tt0006",
+    "type": "description",
+    "modalType": "tooltip",
+    "modalDirection": "left",
+    "description": [
+      { "tag": "h5", "text": "Redux 튜토리얼에서 설명할 예제의 구조는 다음과 같습니다." },
+      {
+        "tag": "div",
+        "direction": "row",
+        "text": [
+          { "tag": "h4", "text": "index.js는 앱의 시작점입니다." },
+          { "tag": "h4", "text": "App.js는 최상위 React 컴포넌트입니다." }
+        ]
+      }
+    ],
+    "file": null,
+    "selectedFile": ["f0003", "f0004"]
+  },
+  "tt0006": {
+    "id": "tt0006",
+    "prev": "tt0005",
+    "next": "tt0007",
+    "type": "description",
+    "modalType": "tooltip",
+    "modalDirection": "left",
+    "description": [
+      { "tag": "h5", "text": "Redux 튜토리얼에서 설명할 예제의 구조는 다음과 같습니다." },
+      {
+        "tag": "div",
+        "direction": "row",
+        "text": [{ "tag": "h4", "text": "store.js는 React 스토어 인스턴스를 생성하는 파일입니다." }]
+      }
+    ],
+    "file": null,
+    "selectedFile": ["f0006"]
+  },
+  "tt0007": {
+    "id": "tt0007",
+    "prev": "tt0006",
+    "next": "tt0008",
+    "type": "description",
+    "modalType": "tooltip",
+    "modalDirection": "left",
+    "description": [
+      { "tag": "h5", "text": "Redux 튜토리얼에서 설명할 예제의 구조는 다음과 같습니다." },
+      {
+        "tag": "div",
+        "direction": "row",
+        "text": [
+          { "tag": "h4", "text": "Counter.js는 카운터 기능에 대한\nUI를 보여주는 React 컴포넌트입니다." },
+          { "tag": "h4", "text": "counterSlice.js는 카운터 기능을 위한\n Redux 로직이 작성되어 있는 파일입니다." }
+        ]
+      }
+    ],
+    "file": null,
+    "selectedFile": ["f0009", "f0010"]
+  },
+  "tt0008": {
+    "id": "tt0008",
+    "prev": "tt0007",
+    "next": "tt0009",
+    "type": "description",
+    "modalType": "tooltip",
+    "modalDirection": "top-left",
+    "description": [
+      {
+        "tag": "ul",
+        "text": [
+          { "tag": "li", "text": "Redux 스토어는 toolkit `configureStore`를 사용하여 생성할 수 있습니다." },
+          { "tag": "li", "text": "configureStore에 인수로 reducer를 전달해야 합니다." },
+          { "tag": "li", "text": "reducer에는 state를 업데이트 시켜주는 로직이 담겨있습니다." },
+          {
+            "tag": "li",
+            "text": "reducer에 대한 추가 설명 및 2번째 줄에서 import한 counterReducer는 slice reducer 단계에서 진행됩니다."
+          }
+        ]
+      }
+    ],
+    "file": "f0006",
+    "highlightLine": "all",
+    "selectedFile": ["f0006"]
+  },
+  "tt0009": {
+    "id": "tt0009",
+    "prev": "tt0008",
+    "next": "tt0010",
+    "type": "visualize",
+    "action": "showStore"
+  },
+  "tt0010": {
+    "id": "tt0010",
+    "prev": "tt0009",
+    "next": "tt0011",
+    "type": "description",
+    "modalType": "tooltip",
+    "modalDirection": "top-left",
+    "description": [
+      {
+        "tag": "ul",
+        "text": [
+          {
+            "tag": "li",
+            "text": "{ counter: counterReducer } 와 같은 객체를 전달할 때 Redux state object에는 state.counter 섹션이 생성됩니다."
+          },
+          {
+            "tag": "li",
+            "text": "또한, 액션이 발생할 때 counterReducer 함수가 state.counter 섹션을 어떻게 업데이트할지 정합니다."
+          }
+        ]
+      }
+    ],
+    "highlightLine": [4, 5, 6, 7, 8]
+  },
+  "tt0011": {
+    "id": "tt0011",
+    "prev": "tt0010",
+    "next": "tt0012",
+    "type": "visualize",
+    "action": "showReducerAndState"
+  },
+  "tt0012": {
+    "id": "tt0012",
+    "prev": "tt0011",
+    "next": "tt0013",
+    "type": "description",
+    "modalType": "tooltip",
+    "modalDirection": "top-left",
+    "description": [
+      {
+        "tag": "h4",
+        "text": "app/store.js에서 import 했던 counterReducer에 대해 알아봅시다."
+      },
+      {
+        "tag": "ul",
+        "text": [
+          {
+            "tag": "li",
+            "text": "Redux toolkit의 createSlice를 사용하여 slice를 생성합니다."
+          }
+        ]
+      }
+    ],
+    "file": "f0010",
+    "highlightLine": [1],
+    "selectedFile": ["f0010"]
+  },
+  "tt0013": {
+    "id": "tt0013",
+    "prev": "tt0012",
+    "next": "tt0015",
+    "type": "description",
+    "modalType": "tooltip",
+    "modalDirection": "top-left",
+    "description": [
+      {
+        "tag": "h3",
+        "text": "createSlice란?"
+      },
+      {
+        "tag": "p",
+        "text": "createSlice는 아래의 인수들을 받아 자동으로 액션 생성자와 액션 타입을 생성하는 함수이다."
+      },
+      {
+        "tag": "ul",
+        "text": [
+          {
+            "tag": "li",
+            "text": "slice 이름"
+          },
+          {
+            "tag": "li",
+            "text": "initial state"
+          },
+          {
+            "tag": "li",
+            "text": "reducer 함수를 가진 객체"
+          }
+        ]
+      }
+    ],
+    "highlightLine": [3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19]
+  },
+  "tt0014": {
+    "id": "tt0014",
+    "prev": "tt0013",
+    "next": "tt0015",
+    "type": "description",
+    "modalType": "divide",
+    "description": [
+      {
+        "left": [
+          {
+            "tag": "h3",
+            "text": "Action"
+          },
+          {
+            "tag": "p",
+            "text": "Action은 type 필드를 가지고 있는 plain JavaScript Object입니다. 간단하게 설명하면 Action은 애플리케이션에서 어떤 일이 일어나는 것을 설명할 수 있는 이벤트라 할 수 있습니다."
+          },
+          {
+            "tag": "pre",
+            "text": "const addTodoAction = {\n  type: 'todos/todoAdded',\n  payload: 'Study English'\n}"
+          },
+          {
+            "tag": "ul",
+            "text": [
+              {
+                "tag": "li",
+                "text": "type 필드"
+              },
+              {
+                "tag": "pre",
+                "text": "1) type 필드는 action을 묘사하는 이름(feature)를 가진 String이어햐 합니다.\n(예시. todos/todoAdded)\n\n2) 보통 ‘도메인/이벤트이름' 과 같은 형식으로 사용합니다.\n  -도메인: action이 속한 카테고리의 특징 (todos)\n  -이벤트 이름: 어떤 이벤트가 발생했는지 구체적인 내용"
+              },
+              {
+                "tag": "li",
+                "text": "payload 필드"
+              },
+              {
+                "tag": "pre",
+                "text": "action은 추가 정보를 담고 있는 다른 필드를 가질 수 있습니다.\n보통 convention에 따라 payload라는 이름으로 작성합니다.\n\npayload에는 action이 발생했을 때 추가 정보를 제공하는 데이터를 담을 수 있습니다.\n예를 들어 todo에 완료된 일을 추가할 때, type 필드(todos/todoAdded)와 함께\n완료된 일의 정보를 담은 payload(‘Study English’)를 설정하여 전달할 수 있습니다."
+              },
+              {
+                "tag": "li",
+                "text": "action creator(액션 생성자)"
+              },
+              {
+                "tag": "p",
+                "text": "액션 생성자는 위의 코드와 같은 포맷의 action object를 생성하고, action object를 반환하는 함수입니다. action creator를 사용하면 매번 action object를 생성하지 않아도 됩니다."
+              }
+            ]
+          }
+        ],
+        "right": [
+          {
+            "tag": "h3",
+            "text": "Reducer"
+          },
+          {
+            "tag": "p",
+            "text": "state에 변화를 일으키는 함수로, 현재 state와 action 객체를 받아 필요한 경우 상태(state)를 업데이트하는 방법을 결정하고, 새로운 상태(state)를 반환하는 함수입니다. reducer는 받은 action 유형에 따라 이벤트를 처리하는 이벤트 리스너라고 생각할 수 있습니다."
+          },
+          {
+            "tag": "ul",
+            "text": [
+              {
+                "tag": "li",
+                "text": "Rducer 내부 로직은 다음과 같다."
+              },
+              {
+                "tag": "pre",
+                "text": "1) action의 type이 조건에 맞는지 체크\n\n2) 맞다면, state의 복사본을 생성하고, 복사본을 새로운 값으로 업데이트 하고 반환\n\n3) 그렇지 않다면, 변경되지 않은 기존의 state를 반환"
+              },
+              {
+                "tag": "li",
+                "text": "Rducer 실행 흐름"
+              },
+              {
+                "tag": "pre",
+                "text": "1) view에서 action 발생 시, dispatch 메서드를 call 하여 action object를 인수로 넘기면\n\n2) Redux store는 자동으로 해당 action type에 부합하는 reducer function을 실행시킨다.\n-dispatch : action 발생시키는 것. 이벤트 트리거 역할(뒤에서 다시 다룹니다.)"
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "file": null
+  },
+  "tt0015": {
+    "id": "tt0015",
+    "prev": "tt0014",
+    "next": "tt0016",
+    "type": "description",
+    "modalType": "tooltip",
+    "modalDirection": "top-left",
+    "description": [
+      {
+        "tag": "h3",
+        "text": "createSlice에서 action"
+      },
+      {
+        "tag": "ul",
+        "text": [
+          {
+            "tag": "li",
+            "text": "createSlice는 아래의 인수들을 받아 자동으로 액션 생성자와 액션 타입을 생성하는 함수입니다."
+          },
+          {
+            "tag": "li",
+            "text": "그 중 name은 각 action type의 첫 번째 부분으로 사용되며, 각 reducer 함수의 키 이름은 두 번째 부분으로 사용됩니다."
+          },
+          {
+            "tag": "li",
+            "text": "'counter'(name)와 'increment' (reducer fn)가 합쳐져 { type: 'counter/increment' }이라는 action type이 생성됩니다."
+          }
+        ]
+      }
+    ],
+    "highlightLine": [4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18]
+  },
+  "tt0016": {
+    "id": "tt0016",
+    "prev": "tt0015",
+    "next": "tt0017",
+    "type": "description",
+    "modalType": "tooltip_wide",
+    "modalDirection": "top-left",
+    "description": [
+      {
+        "tag": "h3",
+        "text": " Reducers and Immutable Updates"
+      },
+      {
+        "tag": "pre",
+        "text": "앞의 코드에서 reducers는 절대 origianl(current) state를 변경할 수 없다고 했습니다.\n\n따라서 reducer 로직을 작성할 때는 기존의 state를 복사한 후 복사본을 변경하여 새로운 state로 리턴합니다.(하지만 위의 코드에서 reducer는 기존의 state를 변경하는 것 처럼 보입니다.\n\n그 이유는 Redux Toolkit의 createSlice 내부에 Immer라는 라이브러리를 사용하여 데이터를 wrapping하고, wrapping된 데이터를 변경하는 코드를 작성할 수 있도록 합니다.\n\n내부에서 기존의 state를 복사하기 때문에 해당 변경 사항만 작성을 하여도 복제된 값을 반환합니다."
+      }
+    ],
+    "highlightLine": [8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18]
+  },
+  "tt0017": {
+    "id": "tt0017",
+    "prev": "tt0016",
+    "next": "tt0018",
+    "type": "visualize",
+    "action": "showReducers"
+  },
+  "tt0018": {
+    "id": "tt0018",
+    "prev": "tt0017",
+    "next": "tt0019",
+    "type": "description",
+    "modalType": "tooltip",
+    "modalDirection": "top-left",
+    "description": [
+      {
+        "tag": "h3",
+        "text": "state, action arguments"
+      },
+      {
+        "tag": "p",
+        "text": "incrementByAmount reducer는 counter에 어떤 값이 추가되어야 하는지 추가적인 정보가 필요합니다."
+      },
+      {
+        "tag": "p",
+        "text": "이때 reducer는 action 인수를 선언하여 action.payload에 입력된 값을 가지고 올 수 있습니다."
+      }
+    ],
+    "highlightLine": [15, 16, 17]
+  },
+  "tt0019": {
+    "id": "tt0019",
+    "prev": "tt0018",
+    "next": "tt0020",
+    "type": "description",
+    "modalType": "tooltip",
+    "modalDirection": "top-left",
+    "description": [
+      {
+        "tag": "h3",
+        "text": "Redux store와 React 컴포넌트연결 "
+      },
+      {
+        "tag": "p",
+        "text": "Redux store에 저장된 값을 React 컴포넌트에서 사용하고 해당 state를 변경하는 작업을 시작해볼까요?"
+      }
+    ],
+    "file": "f0009",
+    "highlightLine": "all",
+    "selectedFile": ["f0009"]
+  },
+  "tt0020": {
+    "id": "tt0020",
+    "prev": "tt0019",
+    "next": "tt0021",
+    "type": "visualize",
+    "action": "showViewComponent"
+  },
+  "tt0021": {
+    "id": "tt0021",
+    "prev": "tt0020",
+    "next": "tt0022",
+    "type": "visualize",
+    "action": "showPath"
+  },
+  "tt0022": {
+    "id": "tt0022",
+    "prev": "tt0021",
+    "next": "tt0023",
+    "type": "description",
+    "modalType": "tooltip",
+    "modalDirection": "top-left",
+    "description": [
+      {
+        "tag": "h3",
+        "text": "Reading Data with useSelector "
+      },
+      {
+        "tag": "p",
+        "text": "useSelector hook을 사용하면 Redux store state의 값을 가져올 수 있습니다."
+      },
+      {
+        "tag": "p",
+        "text": "Redux store를 subscribe하는 구조이므로 Redux store의 state값이 바뀌면 해당 state를 사용하는 컴포넌트는 리렌더링됩니다."
+      }
+    ],
+    "highlightLine": [6]
+  },
+  "tt0023": {
+    "id": "tt0023",
+    "prev": "tt0022",
+    "next": "tt0024",
+    "type": "visualize",
+    "action": "moveStateToView"
+  },
+  "tt0024": {
+    "id": "tt0024",
+    "prev": "tt0023",
+    "next": "tt0025",
+    "type": "description",
+    "modalType": "tooltip",
+    "modalDirection": "top-left",
+    "description": [
+      {
+        "tag": "h3",
+        "text": "Dispatch action"
+      },
+      {
+        "tag": "p",
+        "text": "사용자가 버튼을 클릭하는 것과 같은 작업을 수행할 때 action을 dispatch 하여 redux store의 state를 변경할 수있습니다."
+      }
+    ],
+    "highlightLine": [15]
   }
 }

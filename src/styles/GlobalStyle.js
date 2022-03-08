@@ -7,6 +7,7 @@ html {
   font-size: 10px;
   font-family: 'Apple SD Gothic Neo', Roboto, 'Noto Sans KR', NanumGothic, 'Malgun Gothic', sans-serif;
   height: 100%;
+  background: #211d46;
 }
 body {
   height: 100%;
@@ -34,6 +35,16 @@ button {
 p, pre, h1, h2, h3, h4, h5, h6 {
   padding: 0;
   margin: 0;
+}
+@keyframes fadeIn {
+  from {
+    visibility: visible;
+    opacity: 0;
+  }
+  to {
+    visibility: visible;
+    opacity: 1;
+  }
 }
 `;
 

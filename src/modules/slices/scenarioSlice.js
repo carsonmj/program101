@@ -3,7 +3,9 @@ import { createSlice } from "@reduxjs/toolkit";
 const initialState = {
   isLoading: false,
   scenarios: null,
+  current: null,
   currentScenario: null,
+  visualizeAction: [],
   error: null,
 };
 
@@ -27,6 +29,12 @@ export const scenarioSlice = createSlice({
     },
     updateCurrentScenario: (state, action) => {
       state.currentScenario = action.payload;
+    },
+    updateCurrent: (state, action) => {
+      state.current = action.payload;
+    },
+    updateVisualizeAction: (state, action) => {
+      state.visualizeAction.push(action.payload);
     },
   },
 });

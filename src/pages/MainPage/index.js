@@ -3,15 +3,23 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
 
-import { CodeEditor, FileTree, StepProgressBar, GreetingModal, DefaultModal } from "../../components/organisms";
-import { MainTemplate } from "../../components/templates";
+import {
+  Visualization,
+  CodeEditor,
+  FileTree,
+  StepProgressBar,
+  GreetingModal,
+  DefaultModal,
+} from "../../components/organisms";
+import { MainTemplate, TooltipModal } from "../../components/templates";
 import { scenarioSliceActions } from "../../modules/slices/scenarioSlice";
+import { fileSliceActions } from "../../modules/slices/fileSlice";
 
 const MainPage = () => {
   const dispatch = useDispatch();
   const { scenarios, currentScenario: currentId } = useSelector((state) => state.scenario);
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [content, setContent] = useState("");
+  const [content, setContent] = useState(<p />);
   const currentScenario = currentId && scenarios[currentId];
 
   const handleModalCloseClick = () => {
@@ -21,6 +29,7 @@ const MainPage = () => {
   const handleTutorialStartButtonClick = () => {
     const nextScenarioId = currentScenario.next;
     dispatch(scenarioSliceActions.updateCurrentScenario(nextScenarioId));
+    dispatch(scenarioSliceActions.updateCurrent(scenarios[nextScenarioId]));
 
     setIsModalOpen(false);
   };
@@ -28,6 +37,7 @@ const MainPage = () => {
   const handleNextButtonClick = () => {
     const nextScenarioId = currentScenario.next;
     dispatch(scenarioSliceActions.updateCurrentScenario(nextScenarioId));
+    dispatch(scenarioSliceActions.updateCurrent(scenarios[nextScenarioId]));
 
     setIsModalOpen(false);
   };
@@ -35,6 +45,7 @@ const MainPage = () => {
   const handlePrevButtonClick = () => {
     const prevScenarioId = currentScenario.prev;
     dispatch(scenarioSliceActions.updateCurrentScenario(prevScenarioId));
+    dispatch(scenarioSliceActions.updateCurrent(scenarios[prevScenarioId]));
 
     setIsModalOpen(false);
   };
@@ -74,13 +85,32 @@ const MainPage = () => {
           </DefaultModal>,
         );
         break;
-      default:
-        setContent(<h1>defalut</h1>);
     }
   };
 
   useEffect(() => {
-    if (currentId && currentScenario.type === "description") {
+    const currentFile = currentScenario?.file;
+    const selectedFile = currentScenario?.selectedFile;
+    const highlightLine = currentScenario?.highlightLine;
+
+    if (currentFile) {
+      dispatch(fileSliceActions.setCurrentFile(currentFile));
+    }
+
+    if (highlightLine) {
+      dispatch(fileSliceActions.setHighlightLines(highlightLine));
+    }
+
+    if (selectedFile && selectedFile.length > 0) {
+      dispatch(fileSliceActions.setSelectedFiles(selectedFile));
+    }
+
+    if (
+      currentId &&
+      currentScenario.type === "description" &&
+      currentScenario.modalType !== "tooltip" &&
+      currentScenario.modalType !== "tooltip_wide"
+    ) {
       setModalContent(currentScenario);
       setIsModalOpen(true);
     }
@@ -89,15 +119,30 @@ const MainPage = () => {
   return (
     <>
       <MainTemplate
-        visualContent={<StepProgressBar labels={["step1", "step2", "step3"]} />}
+        visualContent={
+          <>
+            <StepProgressBar labels={["step1", "step2", "step3"]} />
+            <Visualization />
+          </>
+        }
         codeContent={
           <CodeContentWrapper>
             <FileTree />
             <CodeEditor />
           </CodeContentWrapper>
         }
-        modalContent={isModalOpen && <div>{content}</div>}
+        modalContent={isModalOpen && <>{content}</>}
       />
+      {(currentScenario?.modalType === "tooltip" || currentScenario?.modalType === "tooltip_wide") && (
+        <TooltipModal
+          direction={currentScenario.modalDirection}
+          onPrevClick={handlePrevButtonClick}
+          onNextClick={handleNextButtonClick}
+          type={currentScenario?.modalType === "tooltip_wide" ? "wide" : "default"}
+        >
+          {createDynamicElement(currentScenario.description)}
+        </TooltipModal>
+      )}
     </>
   );
 };

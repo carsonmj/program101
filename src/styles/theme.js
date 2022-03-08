@@ -8,11 +8,17 @@ const fontSizes = {
   lg: calcRem(1.4),
   xl: calcRem(1.6),
   xxl: calcRem(1.8),
+  head6: calcRem(2.0),
+  head5: calcRem(2.4),
+  head3: calcRem(3.0),
+  head2: calcRem(3.5),
+  head1: calcRem(4.0),
 };
 
 const fontWeights = {
   light: 200,
   normal: 400,
+  mid: 600,
   bold: 700,
 };
 
@@ -35,11 +41,13 @@ const space = {
 const colors = {
   black_1: "#18181C",
   black_2: "#433B3B",
-  darkblue_1: "#201D47",
-  darkblue_2: "#2E2B52",
-  grayblue_1: "#585858",
-  gray_1: "#6F6C99",
+  // darkblue_1: "#201D47",
+  darkblue_1: "#141229",
+  darkblue_2: "#222033",
+  grayblue_1: "#6F6C99",
+  gray_1: "#585858",
   gray_2: "#585858",
+  gray_3: "#8B8B8B",
   blue_1: "#0078FE",
   lightblue_1: "#14B7E5",
   lightblue_2: "#53B9EA",
@@ -53,12 +61,13 @@ const linearColors = {
 };
 
 const opacityColors = {
-  gray_1: "#c4c4c45c",
+  gray_1: "#C4C4C45C",
   grayblue_1: "#787EAB",
   deepblue_1: "#ABCBFC",
   blue_1: "#ABD0FC",
   pink_1: "#FCABAB",
-  yellow_1: "#FCE5AB",
+  yellow_1: "#FADD94",
+  white_1: "#FFFFFFC9",
 };
 
 const theme = { fontSizes, fontWeights, space, colors, linearColors, opacityColors, iconSize };

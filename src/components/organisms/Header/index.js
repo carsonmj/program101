@@ -4,6 +4,17 @@ import styled from "styled-components";
 
 import { Button } from "../../atoms";
 
+const Header = () => {
+  return (
+    <Container>
+      <Logo />
+      <Button text="restart" />
+    </Container>
+  );
+};
+
+export default Header;
+
 const Container = styled.div`
   display: flex;
   justify-content: space-between;
@@ -21,14 +32,3 @@ const Logo = styled.img.attrs({
   margin: ${({ theme }) => theme.space.md};
   cursor: pointer;
 `;
-
-const Header = () => {
-  return (
-    <Container>
-      <Logo />
-      <Button text="restart" />
-    </Container>
-  );
-};
-
-export default Header;

@@ -32,6 +32,7 @@ const Container = styled.div`
   flex-direction: column;
   align-items: center;
   width: 100%;
+  min-width: 142.5rem;
   height: 100%;
 `;
 
@@ -42,8 +43,12 @@ const ContentWrapper = styled.div`
 `;
 
 const VisualizeBoard = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   width: 50%;
   height: 100%;
+  overflowx: auto;
   background: ${({ theme }) => theme.colors.darkblue_1};
 `;
 
