@@ -5,11 +5,11 @@ import styled from "styled-components";
 
 import { Icon } from "../../atoms";
 
-const FileItem = ({ type, depth, name }) => {
+const FileItem = ({ type, depth, name, id, selected }) => {
   return (
-    <Container depth={depth}>
+    <Container depth={depth} id={id}>
       <Icon type={type} size="xs" />
-      <TextWarrper>{name}</TextWarrper>
+      <TextWarrper selected={selected}>{name}</TextWarrper>
     </Container>
   );
 };
@@ -18,10 +18,13 @@ FileItem.propTypes = {
   type: PropTypes.string.isRequired,
   depth: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   name: PropTypes.string.isRequired,
+  id: PropTypes.string.isRequired,
+  selected: PropTypes.bool,
 };
 
 FileItem.defaultProps = {
   depth: "0rem",
+  selected: false,
 };
 
 export default FileItem;
@@ -36,5 +39,5 @@ const Container = styled.div`
 
 const TextWarrper = styled.p`
   margin-left: ${({ theme }) => theme.space.md};
-  color: ${({ theme }) => theme.colors.white_1};
+  color: ${({ theme, selected }) => (selected ? theme.colors.lightblue_1 : theme.colors.white_1)};
 `;
