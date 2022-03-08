@@ -4,7 +4,9 @@ const initialState = {
   isLoading: false,
   fileTree: null,
   currentFile: null,
+  selectedFiles: [],
   highlightLines: [],
+  modalCoordinate: null,
   error: null,
 };
 
@@ -25,11 +27,17 @@ export const fileSlice = createSlice({
       state.isLoading = false;
       state.error = action.payload;
     },
+    setSelectedFiles: (state, action) => {
+      state.selectedFiles = action.payload;
+    },
     setCurrentFile: (state, action) => {
       state.currentFile = action.payload;
     },
     setHighlightLines: (state, action) => {
       state.highlightLines = action.payload;
+    },
+    setModalCoordinate: (state, action) => {
+      state.modalCoordinate = action.payload;
     },
   },
 });
