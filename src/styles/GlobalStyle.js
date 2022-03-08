@@ -7,6 +7,7 @@ html {
   font-size: 10px;
   font-family: 'Apple SD Gothic Neo', Roboto, 'Noto Sans KR', NanumGothic, 'Malgun Gothic', sans-serif;
   height: 100%;
+  background: #211d46;
 }
 body {
   height: 100%;
