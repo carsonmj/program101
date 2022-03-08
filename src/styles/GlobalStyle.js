@@ -36,6 +36,16 @@ p, pre, h1, h2, h3, h4, h5, h6 {
   padding: 0;
   margin: 0;
 }
+@keyframes fadeIn {
+  from {
+    visibility: visible;
+    opacity: 0;
+  }
+  to {
+    visibility: visible;
+    opacity: 1;
+  }
+}
 `;
 
 export default GlobalStyle;
