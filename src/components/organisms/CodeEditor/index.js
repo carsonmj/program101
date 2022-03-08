@@ -1,43 +1,65 @@
-import React, { useEffect } from "react";
+import React, { useState, useEffect } from "react";
 
+import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
 
-import { TooltipModal } from "../../templates";
+import { fileSliceActions } from "../../../modules/slices/fileSlice";
+import { getCodeFileAPI } from "../../../apis";
 
 const CodeEditor = () => {
-  useEffect(() => {
-    // code for testing render tooltip modal with mock data
-    const $li = document.querySelector("#line1");
-    const rect = $li.getBoundingClientRect();
+  const dispatch = useDispatch();
+  const currentFile = useSelector((state) => state.file.currentFile);
+  const highlightLine = useSelector((state) => state.file.highlightLines);
+  const [codes, setCodes] = useState(null);
+  const [codeLines, setCodeLines] = useState(null);
 
-    const $li2 = document.querySelector("#line2");
-    const rect2 = $li2.getBoundingClientRect();
+  useEffect(() => {
+    const getCodes = async () => {
+      const result = await getCodeFileAPI();
+      setCodes(result);
+    };
+
+    getCodes();
   }, []);
+
+  useEffect(() => {
+    if (currentFile) {
+      codes && setCodeLines(codes[currentFile].code.split("\n"));
+    }
+  }, [currentFile]);
+
+  useEffect(() => {
+    if (highlightLine && codeLines && highlightLine.length > 0) {
+      const lastLine = highlightLine === "all" ? codeLines.length : highlightLine[highlightLine.length - 1];
+      const $li = document.querySelector(`#line${lastLine}`);
+      const rect = $li.getBoundingClientRect();
+
+      dispatch(fileSliceActions.setModalCoordinate({ top: rect.top + 20, left: rect.left + 50 }));
+    }
+  }, [highlightLine, codeLines]);
+
+  const isSelectedLine = (lineNumber) => {
+    if (highlightLine && (highlightLine === "all" || highlightLine.includes(lineNumber))) {
+      return "selected";
+    }
+  };
 
   return (
     <Container>
       <LineWrapper>
-        <li id="line1">
-          <span>1</span>
-          <pre className="selected">
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptate repellendus corrupti modi natus odit
-            adipisci dolor assumenda consequatur veniam, aperiam dolores laborum laudantium, at accusamus esse quasi
-            possimus! Consequuntur, perferendis?
-          </pre>
-        </li>
-        <li id="line2">
-          2
-          <pre>
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptate repellendus corrupti modi natus odit
-          </pre>
-        </li>
-        <li>3</li>
-        <li>4</li>
-        <li>5</li>
-        <li>6</li>
-        <li>7</li>
+        {codeLines &&
+          codeLines.map((line, index) => {
+            const number = index + 1;
+            const id = `line${number}`;
+
+            return (
+              <li id={id} key={id}>
+                <span>{number}</span>
+                <pre className={isSelectedLine(index + 1)}>{line}</pre>
+              </li>
+            );
+          })}
       </LineWrapper>
-      <TooltipModal direction="left" />
     </Container>
   );
 };
@@ -48,7 +70,7 @@ const Container = styled.div`
   display: flex;
   padding: 0.8rem;
   width: calc(100% - 21.6rem);
-  font-size: ${({ theme }) => theme.fontSizes.lg};
+  font-size: ${({ theme }) => theme.fontSizes.md};
   font-weight: ${({ theme }) => theme.fontWeights.normal};
   color: ${({ theme }) => theme.colors.white_1};
 `;
@@ -63,7 +85,8 @@ const LineWrapper = styled.ul`
     min-height: 2rem;
 
     span {
-      margin-right: ${({ theme }) => theme.space.lg};
+      width: 3rem;
+      text-align: left;
     }
   }
 
@@ -75,7 +98,6 @@ const LineWrapper = styled.ul`
     width: 100%;
     padding: 0;
     margin: 0;
-    padding-left: ${({ theme }) => theme.space.lg};
     white-space: pre-wrap;
   }
 `;
