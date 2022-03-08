@@ -35,3 +35,22 @@ export const getFilesAPI = async () => {
     throw new Error(err);
   }
 };
+
+export const getCodeFileAPI = async () => {
+  try {
+    const dir = "/data/codeData.json";
+
+    const res = await fetch(dir, {
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+      },
+    });
+
+    const data = await res.json();
+
+    return data;
+  } catch (err) {
+    throw new Error(err);
+  }
+};
