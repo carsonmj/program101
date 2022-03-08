@@ -12,16 +12,16 @@
   "f0006": {
     "id": "f0006",
     "name": "store.js",
-    "code": "import React from 'react';\nimport ReactDOM from 'react-dom';\nimport './index.css';\nimport App from './App';\nimport store from './app/store';\nimport { Provider } from 'react-redux';\nimport * as serviceWorker from './serviceWorker';\n\nReactDOM.render(\n  <Provider store={store}>\n    <App />\n  </Provider>,\n  document.getElementById('root'),\n);\n"
+    "code": "import { configureStore } from '@reduxjs/toolkit';\nimport counterReducer from '../features/counter/counterSlice';\n\nexport default configureStore({\n  reducer: {\n    counter: counterReducer,\n  },\n});\n"
   },
   "f0009": {
     "id": "f0009",
     "name": "Counter.js",
-    "code": "import React from 'react';\nimport ReactDOM from 'react-dom';\nimport './index.css';\nimport App from './App';\nimport store from './app/store';\nimport { Provider } from 'react-redux';\nimport * as serviceWorker from './serviceWorker';\n\nReactDOM.render(\n  <Provider store={store}>\n    <App />\n  </Provider>,\n  document.getElementById('root'),\n);\n"
+    "code": "import React, { useState } from 'react';\nimport { useSelector, useDispatch } from 'react-redux';\nimport { decrement, increment, incrementByAmount } from './counterSlice';\n\nexport function Counter() {\n  const count = useSelector((state) => state.counter.value);\n  const dispatch = useDispatch();\n  const [incrementAmount, setIncrementAmount] = useState('0');\n  \n  return (\n    <div>\n      <div>\n        <button\n          aria-label='Increment value'\n          onClick={() => dispatch(increment())}\n        >\n          +\n        </button>\n        <span>{count}</span>\n        <button\n          aria-label='Decrement value'\n          onClick={() => dispatch(decrement())}\n        >\n          -\n        </button>\n      </div>\n    </div>\n  );\n}\n"
   },
   "f0010": {
     "id": "f0010",
     "name": "counterSlice.js",
-    "code": "import React from 'react';\nimport ReactDOM from 'react-dom';\nimport './index.css';\nimport App from './App';\nimport store from './app/store';\nimport { Provider } from 'react-redux';\nimport * as serviceWorker from './serviceWorker';\n\nReactDOM.render(\n  <Provider store={store}>\n    <App />\n  </Provider>,\n  document.getElementById('root'),\n);\n"
+    "code": "import { createSlice } from '@reduxjs/toolkit';\n\nexport const counterSlice = createSlice({\n  name: 'counter',\n  initialState: {\n    value: 0,\n  },\n  reducers: {\n    increment: (state) => {\n      state.value += 1;\n    },\n    decrement: (state) => {\n      state.value -= 1;\n    },\n    incrementByAmount: (state, action) => {\n      state.value += action.payload;\n    },\n  },\n});\n\nexport const { increment, decrement, incrementByAmount } = counterSlice.actions;\n\nexport default counterSlice.reducer;\n"
   }
 }
