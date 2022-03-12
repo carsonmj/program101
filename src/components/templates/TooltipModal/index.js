@@ -119,6 +119,10 @@ const ContentWrapper = styled.div`
     list-style-type: disc;
   }
 
+  p {
+    margin-top: ${({ theme }) => theme.space.md};
+  }
+
   div {
     display: flex;
   }
