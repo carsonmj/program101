@@ -6,7 +6,7 @@ import styled from "styled-components";
 import { Button, Icon } from "../../atoms";
 import themes from "../../../styles/theme";
 
-const GreetingModal = ({ children, onClickClose, onClickLeftButton }) => {
+const GreetingModal = ({ children, onClickClose, onClickLeftButton, onClickRightButton, leftText, rigthText }) => {
   return (
     <Overlay>
       <Container>
@@ -16,8 +16,8 @@ const GreetingModal = ({ children, onClickClose, onClickLeftButton }) => {
         {children}
         <Text>Redux Tutorial</Text>
         <ButtonWrapper>
-          <Button text="Start Tutorial" size="long" onClick={onClickLeftButton} />
-          <Button text="Start Practice" size="long" onClick={() => alert("Practice mode 준비중")} />
+          <Button text={leftText} size="long" onClick={onClickLeftButton} />
+          <Button text={rigthText} size="long" onClick={onClickRightButton} />
         </ButtonWrapper>
       </Container>
     </Overlay>
@@ -28,6 +28,9 @@ GreetingModal.propTypes = {
   children: PropTypes.node.isRequired,
   onClickClose: PropTypes.func.isRequired,
   onClickLeftButton: PropTypes.func.isRequired,
+  onClickRightButton: PropTypes.func.isRequired,
+  leftText: PropTypes.string.isRequired,
+  rigthText: PropTypes.string.isRequired,
 };
 
 export default GreetingModal;
@@ -59,6 +62,7 @@ const Container = styled.div`
 `;
 
 const Text = styled.p`
+  margin-top: 4rem;
   font-size: ${({ theme }) => theme.fontSizes.xxl};
   color: ${({ theme }) => theme.colors.gray_1};
 `;
