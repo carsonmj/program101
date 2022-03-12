@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 
 import { debounce } from "lodash";
 import { useDispatch, useSelector } from "react-redux";
@@ -12,6 +12,8 @@ const Visualization = () => {
   const scenarios = useSelector((state) => state.scenario.scenarios);
   const current = useSelector((state) => state.scenario.current);
   const actions = useSelector((state) => state.scenario.visualizeAction);
+  const [countInRedux, setCountInRedux] = useState(1);
+  const [count, setCount] = useState(1);
 
   const handleAnimationEnd = debounce(() => {
     if (current?.type === "visualize") {
@@ -19,10 +21,18 @@ const Visualization = () => {
       dispatch(scenarioSliceActions.updateCurrentScenario(nextId));
       dispatch(scenarioSliceActions.updateCurrent(scenarios[nextId]));
     }
-  }, 1000);
+  }, 200);
 
   useEffect(() => {
     if (current?.type === "visualize" && current?.action) {
+      if (current.action === "updateCountInRedux") {
+        setCountInRedux(current.data);
+      }
+
+      if (current.action === "updateCountView") {
+        setCount(current.data);
+      }
+
       dispatch(scenarioSliceActions.updateVisualizeAction(current.action));
     }
   }, [current]);
@@ -47,9 +57,9 @@ const Visualization = () => {
             </ReducerBox>
             <StateBox actions={actions} animation={current?.action}>
               <Text align="center">State</Text>
-              <BoxWrapper actions={actions} animation={current?.action}>
-                <InnerBox>count: 1</InnerBox>
-              </BoxWrapper>
+              <CounterBoxWrapper actions={actions} animation={current?.action}>
+                <CounterInRedux animation={current?.action}>{`count: ${countInRedux}`}</CounterInRedux>
+              </CounterBoxWrapper>
             </StateBox>
           </StoreRightSide>
         </StoreBox>
@@ -57,7 +67,7 @@ const Visualization = () => {
           <DispatchActionBox animation={current?.action}>{"dispatch({ type: counter/decrement })"}</DispatchActionBox>
           <CounterWrapper actions={actions} animation={current?.action}>
             <MinusButton animation={current?.action}>-</MinusButton>
-            <CounterText>1</CounterText>
+            <CounterText animation={current?.action}>{count}</CounterText>
             <PlusButton>+</PlusButton>
           </CounterWrapper>
           <Text color="dark">View</Text>
@@ -152,18 +162,16 @@ const Container = styled.div`
     }
     100% {
       top: -25px;
-      left: 35px;
+      left: 30px;
     }
   }
 
   @keyframes blink {
     0% {
       box-shadow: 1px 1px 2px gray, 0 0 25px white, 0 0 5px yellow;
-      // box-shadow: 1px 1px 2px gray, 0 0 25px white, 0 0 5px darkblue;
     }
     100% {
       background: #f1e1c2c9;
-      // background: #7a71db;
     }
   }
 
@@ -208,7 +216,6 @@ const StoreBox = styled.div`
   height: 32rem;
   padding-left: ${({ theme }) => theme.space.xl};
   visibility: ${({ actions }) => (actions.includes("showStore") ? "visible" : "hidden")};
-  // visibility: visible;
   background: ${({ theme }) => theme.opacityColors.grayblue_1};
   border-radius: 1rem;
   z-index: 2;
@@ -232,7 +239,6 @@ const ViewBox = styled.div`
   height: 22rem;
   padding-left: ${({ theme }) => theme.space.xl};
   visibility: ${({ actions }) => (actions && actions.includes("showViewComponent") ? "visible" : "hidden")};
-  // visibility: visible;
   background: ${({ theme }) => theme.colors.white_1};
   border-radius: 1rem;
   margin-top: 4rem;
@@ -271,7 +277,6 @@ const ReducerBox = styled.div`
   width: 24rem;
   height: 14rem;
   visibility: ${({ actions }) => (actions.includes("showReducerAndState") ? "visible" : "hidden")};
-  // visibility: visible;
   background: ${({ theme }) => theme.opacityColors.pink_1};
   border-radius: 1rem;
   z-index: 2;
@@ -294,7 +299,6 @@ const StateBox = styled.div`
   width: 24rem;
   height: 14rem;
   visibility: ${({ actions }) => (actions.includes("showReducerAndState") ? "visible" : "hidden")};
-  // visibility: visible;
   background: ${({ theme }) => theme.opacityColors.yellow_1};
   border-radius: 1rem;
   z-index: 2;
@@ -318,8 +322,6 @@ const Dispatch = styled.div`
   line-height: 9rem;
   border-radius: 1rem;
   visibility: ${({ actions }) => (actions.includes("showStore") ? "visible" : "hidden")};
-  // visibility: visible;
-
   background: ${({ theme }) => theme.opacityColors.deepblue_1};
   color: ${({ theme }) => theme.colors.white_1};
   font-size: ${({ theme }) => theme.fontSizes.head6};
@@ -336,7 +338,7 @@ const Dispatch = styled.div`
     }
 
     if (animation === "blinkDispatch") {
-      return "animation: blink 1s linear 2";
+      return "animation: blink 0.5s linear 2";
     }
   }}
 `;
@@ -348,9 +350,7 @@ const PathBox = styled.div`
   width: 60rem;
   height: 28rem;
   visibility: ${({ actions }) => (actions.includes("showPath") ? "visible" : "hidden")};
-  // visibility: visible;
   background: transparent;
-  // border: 0.2rem dashed transparent;
   border: 0.1rem solid ${({ theme }) => theme.colors.grayblue_1};
   border-radius: 0.4rem;
   z-index: 0;
@@ -370,14 +370,13 @@ const Circle = styled.div`
   top: 0;
   left: 0;
   visibility: hidden;
-  // visibility: visible;
   z-index: 1;
 
   ${({ animation }) => {
     if (animation === "moveStateToView") {
       return `
         visibility: visible;
-        animation: moveStateToView 3s linear 1;
+        animation: moveStateToView 2s linear 1;
         animation-fill-mode: forwards;
       `;
     }
@@ -385,7 +384,7 @@ const Circle = styled.div`
     if (animation === "moveViewToDispatch") {
       return `
         visibility: visible;
-        animation: moveViewToDispatch 3s linear 1;
+        animation: moveViewToDispatch 2s linear 1;
         animation-fill-mode: forwards;
       `;
     }
@@ -397,7 +396,6 @@ const BoxWrapper = styled.div`
   justify-content: space-around;
   width: 100%;
   visibility: ${({ actions }) => (actions && actions.includes("showReducers") ? "visible" : "hidden")};
-  // visibility: visible;
 
   ${({ animation }) => {
     if (animation === "showReducers") {
@@ -405,6 +403,45 @@ const BoxWrapper = styled.div`
         animation: fadeIn 0.5s linear 1;
         animation-fill-mode: forwards;
       `;
+    }
+  }}
+`;
+
+const CounterBoxWrapper = styled.div`
+  display: flex;
+  justify-content: space-around;
+  width: 100%;
+  visibility: ${({ actions }) => (actions && actions.includes("showReducerAndState") ? "visible" : "hidden")};
+
+  ${({ animation }) => {
+    if (animation === "showReducerAndState") {
+      return `
+        animation: fadeIn 0.5s linear 1;
+        animation-fill-mode: forwards;
+      `;
+    }
+  }}
+`;
+
+const CounterInRedux = styled.div`
+  width: 10rem;
+  height: 5rem;
+  line-height: 5rem;
+  border-radius: 1rem;
+  background: ${({ theme }) => theme.opacityColors.white_1};
+  color: ${({ theme }) => theme.colors.gray_3};
+  text-align: center;
+
+  ${({ animation }) => {
+    // if (animation === "showReducerAndState") {
+    //   return `
+    //     animation: fadeIn 0.5s linear 1;
+    //     animation-fill-mode: forwards;
+    //   `;
+    // }
+
+    if (animation === "updateCountInRedux") {
+      return "animation: blink 1s linear 2;";
     }
   }}
 `;
@@ -426,8 +463,8 @@ const CounterWrapper = styled.div`
   justify-content: space-evenly;
   width: 18rem;
   height: 4rem;
+  margin-bottom: 4rem;
   visibility: ${({ actions }) => (actions && actions.includes("showViewComponent") ? "visible" : "hidden")};
-  // visibility: visible;
   boder-radius: 1rem;
   border-radius: 1rem;
   box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
@@ -438,10 +475,6 @@ const CounterWrapper = styled.div`
         animation: fadeIn 0.5s linear 1;
         animation-fill-mode: forwards;
       `;
-    }
-
-    if (animation === "blinkCounter") {
-      return "animation: blink 1s linear 2;";
     }
   }}
 `;
@@ -482,6 +515,14 @@ const CounterText = styled.div`
   background: ${({ theme }) => theme.colors.white_1};
   color: ${({ theme }) => theme.colors.darkblue_2};
   font-size: ${({ theme }) => theme.fontSizes.head6};
+
+  ${({ animation }) => {
+    if (animation === "blinkCounter" || animation === "updateCountView") {
+      return `
+        animation: blink 1s linear 2;
+      `;
+    }
+  }}
 `;
 
 const DispatchActionBox = styled.div`
@@ -490,7 +531,7 @@ const DispatchActionBox = styled.div`
   line-height: 3.5rem;
   visibility: ${({ actions }) => (actions && actions.includes("showViewComponent") ? "visible" : "hidden")};
   visibility: hidden;
-  margin-bottom: 4rem;
+  margin-bottom: 2rem;
   border-radius: 2rem;
   background: ${({ theme }) => theme.colors.grayblue_1};
   background: #3d4c70;
