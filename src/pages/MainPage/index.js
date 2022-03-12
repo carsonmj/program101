@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from "react";
 
 import { useDispatch, useSelector } from "react-redux";
+import { DragDropContext, Draggable, Droppable } from "react-beautiful-dnd";
 import styled from "styled-components";
 
+import { AnswerBox } from "../../components/atoms";
 import {
   Visualization,
   CodeEditor,
@@ -10,6 +12,7 @@ import {
   StepProgressBar,
   GreetingModal,
   DefaultModal,
+  PracticeCodeEditor,
 } from "../../components/organisms";
 import { MainTemplate, TooltipModal } from "../../components/templates";
 import { scenarioSliceActions } from "../../modules/slices/scenarioSlice";
@@ -17,7 +20,7 @@ import { fileSliceActions } from "../../modules/slices/fileSlice";
 
 const MainPage = () => {
   const dispatch = useDispatch();
-  const { scenarios, currentScenario: currentId } = useSelector((state) => state.scenario);
+  const { scenarios, currentScenario: currentId, mode } = useSelector((state) => state.scenario);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [content, setContent] = useState(<p />);
   const currentScenario = currentId && scenarios[currentId];
@@ -27,9 +30,18 @@ const MainPage = () => {
   };
 
   const handleTutorialStartButtonClick = () => {
+    dispatch(scenarioSliceActions.updateMode("tutorial"));
     const nextScenarioId = currentScenario.next;
     dispatch(scenarioSliceActions.updateCurrentScenario(nextScenarioId));
     dispatch(scenarioSliceActions.updateCurrent(scenarios[nextScenarioId]));
+
+    setIsModalOpen(false);
+  };
+
+  const handlePracticeStartButtonClick = () => {
+    dispatch(scenarioSliceActions.updateMode("practice"));
+    dispatch(scenarioSliceActions.updateCurrentScenario("pr0001"));
+    dispatch(scenarioSliceActions.updateCurrent(scenarios.pr0001));
 
     setIsModalOpen(false);
   };
@@ -48,6 +60,11 @@ const MainPage = () => {
     dispatch(scenarioSliceActions.updateCurrent(scenarios[prevScenarioId]));
 
     setIsModalOpen(false);
+  };
+
+  const handleTutorialRestart = () => {
+    dispatch(scenarioSliceActions.updateCurrentScenario("tt0002"));
+    dispatch(scenarioSliceActions.updateCurrent(scenarios.tt0002));
   };
 
   const createDynamicElement = (elementList) => {
@@ -73,7 +90,26 @@ const MainPage = () => {
     switch (scenario.modalType) {
       case "welcome":
         setContent(
-          <GreetingModal onClickClose={handleModalCloseClick} onClickLeftButton={handleTutorialStartButtonClick}>
+          <GreetingModal
+            onClickClose={handleModalCloseClick}
+            onClickLeftButton={handleTutorialStartButtonClick}
+            onClickRightButton={handlePracticeStartButtonClick}
+            leftText="Start Tutorial"
+            rigthText="Start Practice"
+          >
+            {createDynamicElement(scenario.description)}
+          </GreetingModal>,
+        );
+        break;
+      case "tutorial_end":
+        setContent(
+          <GreetingModal
+            onClickClose={handleModalCloseClick}
+            onClickLeftButton={handleTutorialRestart}
+            onClickRightButton={handlePracticeStartButtonClick}
+            leftText="Try Again"
+            rigthText="Start Practice"
+          >
             {createDynamicElement(scenario.description)}
           </GreetingModal>,
         );
@@ -127,8 +163,44 @@ const MainPage = () => {
         }
         codeContent={
           <CodeContentWrapper>
-            <FileTree />
-            <CodeEditor />
+            <DragDropContext
+              onDragEnd={(result) => {
+                console.log("end!", result);
+              }}
+            >
+              <Droppable droppableId="answers">
+                {(provided, snapshot) => (
+                  <>
+                    <EditorWrapper mode={mode} ref={provided.innerRef}>
+                      <FileTree />
+                      {mode === "tutorial" ? (
+                        <CodeEditor />
+                      ) : (
+                        <PracticeCodeEditor {...provided.droppableProps} test={provided.isDropDisabled} />
+                      )}
+                    </EditorWrapper>
+                    <AnswersWrapper mode={mode}>
+                      <h3>Description</h3>
+                      <p>위의 박스에 알맞은 코드를 선택해 위로 끌어올려 주세요.</p>
+                      <Answers>
+                        {["test", "test2", "test3"].map((item, index) => (
+                          <Draggable key={item} draggableId={item} index={index}>
+                            {(provided, snapshot) => {
+                              return (
+                                <div ref={provided.innerRef} {...provided.draggableProps} {...provided.dragHandleProps}>
+                                  <AnswerBox>{item}</AnswerBox>
+                                </div>
+                              );
+                            }}
+                          </Draggable>
+                        ))}
+                      </Answers>
+                    </AnswersWrapper>
+                    {provided.placeholder}
+                  </>
+                )}
+              </Droppable>
+            </DragDropContext>
           </CodeContentWrapper>
         }
         modalContent={isModalOpen && <>{content}</>}
@@ -151,5 +223,37 @@ export default MainPage;
 
 const CodeContentWrapper = styled.div`
   display: flex;
+  flex-direction: column;
   height: 100%;
+`;
+
+const EditorWrapper = styled.div`
+  display: flex;
+  height: ${({ mode }) => (mode === "tutorial" ? "100%" : "60%")};
+`;
+
+const AnswersWrapper = styled.div`
+  background: red;
+  display: flex;
+  ${({ mode }) => mode === "tutorial" && "display: none;"};
+  flex-direction: column;
+  height: 40%;
+  padding: 2rem;
+  background: ${({ theme }) => theme.colors.lightdarkblue_1};
+  color: ${({ theme }) => theme.colors.white_1};
+  font-size: ${({ theme }) => theme.fontSizes.md};
+
+  p {
+    margin-top: 0.8rem;
+    font-weight: 200;
+  }
+`;
+
+const Answers = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  margin-top: 2rem;
+  color: ${({ theme }) => theme.colors.gray_1};
+  white-space: pre;
 `;
