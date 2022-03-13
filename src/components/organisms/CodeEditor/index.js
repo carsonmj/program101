@@ -86,6 +86,7 @@ const LineWrapper = styled.ul`
 
     span {
       width: 3rem;
+      line-height: 2rem;
       text-align: left;
     }
   }
@@ -98,6 +99,15 @@ const LineWrapper = styled.ul`
     width: 100%;
     padding: 0;
     margin: 0;
+    line-height: 2rem;
+    white-space: pre-wrap;
+  }
+
+  p {
+    width: 100%;
+    padding: 0;
+    margin: 0;
+    line-height: 2rem;
     white-space: pre-wrap;
   }
 `;
