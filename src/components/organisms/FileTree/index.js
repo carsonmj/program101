@@ -56,7 +56,6 @@ export default FileTree;
 const Container = styled.div`
   width: fit-content;
   min-width: 18rem;
-  height: calc(100% - 0.1rem);
   border: 0.1rem solid ${({ theme }) => theme.colors.gray_2};
   color: ${({ theme }) => theme.colors.white_1};
   font-size: ${({ theme }) => theme.fontSizes.md};
