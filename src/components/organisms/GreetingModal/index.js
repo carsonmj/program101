@@ -3,8 +3,8 @@ import React from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
 
-import { Button, Icon } from "../../atoms";
 import themes from "../../../styles/theme";
+import { Button, Icon } from "../../atoms";
 
 const GreetingModal = ({ children, onClickClose, onClickLeftButton, onClickRightButton, leftText, rigthText }) => {
   return (
@@ -59,6 +59,7 @@ const Container = styled.div`
   border-radius: ${({ theme }) => theme.space.md};
   transform: translate(-50%, 60%);
   background-color: ${({ theme }) => theme.colors.white_1};
+  animation: fadeIn 0.5s linear 1;
 `;
 
 const Text = styled.p`
