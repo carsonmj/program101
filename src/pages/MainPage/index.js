@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
 
 import { useDispatch, useSelector } from "react-redux";
-import { DragDropContext, Draggable, Droppable } from "react-beautiful-dnd";
 import styled from "styled-components";
 
-import { AnswerBox } from "../../components/atoms";
+import { Icon, Image } from "../../components/atoms";
 import {
+  Answers,
   Visualization,
   CodeEditor,
   FileTree,
@@ -13,10 +13,11 @@ import {
   GreetingModal,
   DefaultModal,
   PracticeCodeEditor,
+  DivideModal,
 } from "../../components/organisms";
 import { MainTemplate, TooltipModal } from "../../components/templates";
-import { scenarioSliceActions } from "../../modules/slices/scenarioSlice";
 import { fileSliceActions } from "../../modules/slices/fileSlice";
+import { scenarioSliceActions } from "../../modules/slices/scenarioSlice";
 
 const MainPage = () => {
   const dispatch = useDispatch();
@@ -24,6 +25,7 @@ const MainPage = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [content, setContent] = useState(<p />);
   const currentScenario = currentId && scenarios[currentId];
+  const [isCorrectAnswer, setIsCorrectAnswer] = useState("none");
 
   const handleModalCloseClick = () => {
     setIsModalOpen(false);
@@ -63,6 +65,7 @@ const MainPage = () => {
   };
 
   const handleTutorialRestart = () => {
+    dispatch(scenarioSliceActions.resetVisualizeAction());
     dispatch(scenarioSliceActions.updateCurrentScenario("tt0002"));
     dispatch(scenarioSliceActions.updateCurrent(scenarios.tt0002));
   };
@@ -70,6 +73,9 @@ const MainPage = () => {
   const createDynamicElement = (elementList) => {
     return elementList.map((el, index) => {
       if (Array.isArray(el.text)) {
+        if (el.direction === "column") {
+          return <div key={"wr".concat(index)}>{createDynamicElement(el.text)}</div>;
+        }
         return createDynamicElement(el.text);
       }
 
@@ -82,6 +88,15 @@ const MainPage = () => {
           </CustomTag>
         );
       }
+
+      if (el.tag === "Icon") {
+        return <Icon key={"cs".concat(index)} type={el.type} color={el.color} />;
+      }
+
+      if (el.tag === "img") {
+        return <Image key={"cs".concat(index)} src={el.src} width={el.width} height={el.height} alt="data-flow" />;
+      }
+
       return <CustomTag key={"cs".concat(index)}>{el.text}</CustomTag>;
     });
   };
@@ -112,6 +127,16 @@ const MainPage = () => {
           >
             {createDynamicElement(scenario.description)}
           </GreetingModal>,
+        );
+        break;
+      case "divide":
+        setContent(
+          <DivideModal
+            left={createDynamicElement(scenario.description.left)}
+            right={createDynamicElement(scenario.description.right)}
+            onPrevClick={handlePrevButtonClick}
+            onNextClick={handleNextButtonClick}
+          />,
         );
         break;
       case "default":
@@ -152,55 +177,40 @@ const MainPage = () => {
     }
   }, [currentId]);
 
+  useEffect(() => {
+    let timeoutId = null;
+
+    timeoutId = setTimeout(() => {
+      if (isCorrectAnswer !== "none" && isCorrectAnswer) {
+        const nextScenarioId = currentScenario.next;
+        dispatch(scenarioSliceActions.updateCurrentScenario(nextScenarioId));
+        dispatch(scenarioSliceActions.updateCurrent(scenarios[nextScenarioId]));
+      }
+    }, 2000);
+
+    () => {
+      clearTimeout(timeoutId);
+    };
+  }, [isCorrectAnswer]);
+
   return (
     <>
       <MainTemplate
         visualContent={
           <>
-            <StepProgressBar labels={["step1", "step2", "step3"]} />
+            <StepProgressBar labels={["Redux Store", "Slice Reducer", "View Component"]} />
             <Visualization />
           </>
         }
         codeContent={
           <CodeContentWrapper>
-            <DragDropContext
-              onDragEnd={(result) => {
-                console.log("end!", result);
-              }}
-            >
-              <Droppable droppableId="answers">
-                {(provided, snapshot) => (
-                  <>
-                    <EditorWrapper mode={mode} ref={provided.innerRef}>
-                      <FileTree />
-                      {mode === "tutorial" ? (
-                        <CodeEditor />
-                      ) : (
-                        <PracticeCodeEditor {...provided.droppableProps} test={provided.isDropDisabled} />
-                      )}
-                    </EditorWrapper>
-                    <AnswersWrapper mode={mode}>
-                      <h3>Description</h3>
-                      <p>위의 박스에 알맞은 코드를 선택해 위로 끌어올려 주세요.</p>
-                      <Answers>
-                        {["test", "test2", "test3"].map((item, index) => (
-                          <Draggable key={item} draggableId={item} index={index}>
-                            {(provided, snapshot) => {
-                              return (
-                                <div ref={provided.innerRef} {...provided.draggableProps} {...provided.dragHandleProps}>
-                                  <AnswerBox>{item}</AnswerBox>
-                                </div>
-                              );
-                            }}
-                          </Draggable>
-                        ))}
-                      </Answers>
-                    </AnswersWrapper>
-                    {provided.placeholder}
-                  </>
-                )}
-              </Droppable>
-            </DragDropContext>
+            <EditorWrapper mode={mode}>
+              <FileTree />
+              {mode === "tutorial" ? <CodeEditor /> : <PracticeCodeEditor onAnswerDone={setIsCorrectAnswer} />}
+            </EditorWrapper>
+            <AnswersWrapper mode={mode}>
+              <Answers isCorrectAnswer={isCorrectAnswer} onIsCorrectAnswerChnage={setIsCorrectAnswer} />
+            </AnswersWrapper>
           </CodeContentWrapper>
         }
         modalContent={isModalOpen && <>{content}</>}
@@ -238,7 +248,7 @@ const AnswersWrapper = styled.div`
   ${({ mode }) => mode === "tutorial" && "display: none;"};
   flex-direction: column;
   height: 40%;
-  padding: 2rem;
+  padding: 2rem 2rem 1rem 2rem;
   background: ${({ theme }) => theme.colors.lightdarkblue_1};
   color: ${({ theme }) => theme.colors.white_1};
   font-size: ${({ theme }) => theme.fontSizes.md};
@@ -247,13 +257,4 @@ const AnswersWrapper = styled.div`
     margin-top: 0.8rem;
     font-weight: 200;
   }
-`;
-
-const Answers = styled.div`
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: flex-start;
-  margin-top: 2rem;
-  color: ${({ theme }) => theme.colors.gray_1};
-  white-space: pre;
 `;
