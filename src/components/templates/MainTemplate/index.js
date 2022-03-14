@@ -12,7 +12,9 @@ const MainTemplate = ({ visualContent, codeContent, modalContent }) => {
       <Header />
       <ContentWrapper>
         <VisualizeBoard>{visualContent}</VisualizeBoard>
-        <CodeEditorBoard>{codeContent}</CodeEditorBoard>
+        <EditorWrapper>
+          <CodeEditorBoard>{codeContent}</CodeEditorBoard>
+        </EditorWrapper>
       </ContentWrapper>
       <Portal>{modalContent}</Portal>
     </Container>
@@ -52,8 +54,13 @@ const VisualizeBoard = styled.div`
   background: ${({ theme }) => theme.colors.darkblue_1};
 `;
 
-const CodeEditorBoard = styled.div`
+const EditorWrapper = styled.div`
   width: 50%;
+  height: 100%;
+`;
+
+const CodeEditorBoard = styled.div`
+  width: 100%;
   height: 100%;
   background: ${({ theme }) => theme.colors.darkblue_2};
 `;
