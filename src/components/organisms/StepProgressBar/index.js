@@ -1,15 +1,41 @@
-import React from "react";
+import React, { useEffect } from "react";
 
 import PropTypes from "prop-types";
+import { useSelector } from "react-redux";
 import styled from "styled-components";
 
 const StepProgressBar = ({ labels }) => {
+  const current = useSelector((state) => state.scenario.currentScenario);
+
+  useEffect(() => {
+    if (current === "tt0005") {
+      const $target = document.querySelector("#ReduxStore");
+      $target.className = "active";
+
+      return;
+    }
+
+    if (current === "tt0012") {
+      const $target = document.querySelector("#SliceReducer");
+      $target.className = "active";
+
+      return;
+    }
+
+    if (current === "tt0019") {
+      const $target = document.querySelector("#ViewComponent");
+      $target.className = "active";
+    }
+  }, [current]);
+
   return (
     <Container>
-      <ProgressBar>
-        <li className="active">Step 1</li>
-        <li>Step 2</li>
-        <li>Step 3</li>
+      <ProgressBar length={labels.length}>
+        {labels.map((label) => (
+          <li id={label.split(" ").join("")} key={label}>
+            {label}
+          </li>
+        ))}
       </ProgressBar>
     </Container>
   );
@@ -22,18 +48,20 @@ StepProgressBar.propTypes = {
 export default StepProgressBar;
 
 const Container = styled.div`
-  width: 100%;
+  width: 80%;
 `;
 
 const ProgressBar = styled.ul`
   counter-reset: step;
+  font-size: 1rem;
 
   li {
     float: left;
-    width: 33.33%;
+    width: 33.3%;
     position: relative;
     text-align: center;
     color: ${({ theme }) => theme.colors.white_1};
+    transition: 1s;
   }
 
   li:before {
