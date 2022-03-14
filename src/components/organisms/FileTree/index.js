@@ -3,8 +3,8 @@ import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
 
-import { flattenFiles, isSelectedFile } from "../../../utils";
 import { fileSliceActions } from "../../../modules/slices/fileSlice";
+import { flattenFiles, isSelectedFile } from "../../../utils";
 import { FileItem } from "../../molecules";
 
 const FileTree = () => {
@@ -60,6 +60,7 @@ const Container = styled.div`
   color: ${({ theme }) => theme.colors.white_1};
   font-size: ${({ theme }) => theme.fontSizes.md};
   font-weight: ${({ theme }) => theme.fontWeights.light};
+  transition: 1s;
 `;
 
 const Title = styled.div`
