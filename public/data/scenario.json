@@ -748,8 +748,136 @@
   "pr0008": {
     "id": "pr0008",
     "prev": "pr0007",
-    "next": null,
+    "next": "pr0009",
     "type": "visualize",
     "action": "showReducers"
+  },
+  "pr0009": {
+    "id": "pr0009",
+    "prev": "pr0008",
+    "next": "pr0010",
+    "type": "visualize",
+    "action": "showViewComponent"
+  },
+  "pr0010": {
+    "id": "pr0010",
+    "prev": "pr0009",
+    "next": "pr0011",
+    "type": "visualize",
+    "action": "showPath"
+  },
+  "pr0011": {
+    "id": "pr0011",
+    "prev": "pr0010",
+    "next": "pr0012",
+    "type": "problem",
+    "file": "f0009",
+    "selectedFile": ["f0009"],
+    "problemLine": 6,
+    "phrase": "state.counter.value",
+    "answer": "pa0015"
+  },
+  "pr0012": {
+    "id": "pr0012",
+    "prev": "pr0011",
+    "next": "pr0013",
+    "type": "visualize",
+    "action": "moveStateToView"
+  },
+  "pr0013": {
+    "id": "pr0013",
+    "prev": "pr0012",
+    "next": "pr0014",
+    "type": "visualize",
+    "action": "blinkCounter"
+  },
+  "pr0014": {
+    "id": "pr0014",
+    "prev": "pr0013",
+    "next": "pr0015",
+    "type": "problem",
+    "problemLine": 22,
+    "phrase": "dispatch(decrement())",
+    "answer": "pa0014"
+  },
+  "pr0015": {
+    "id": "pr0015",
+    "prev": "pr0014",
+    "next": "pr0016",
+    "type": "visualize",
+    "action": "showClickEvent"
+  },
+  "pr0016": {
+    "id": "pr0016",
+    "prev": "pr0015",
+    "next": "pr0017",
+    "type": "visualize",
+    "action": "dispatchCall"
+  },
+  "pr0017": {
+    "id": "pr0017",
+    "prev": "pr0016",
+    "next": "pr0018",
+    "type": "visualize",
+    "action": "moveViewToDispatch"
+  },
+  "pr0018": {
+    "id": "pr0018",
+    "prev": "pr0017",
+    "next": "pr0019",
+    "type": "visualize",
+    "action": "blinkDispatch"
+  },
+  "pr0019": {
+    "id": "pr0019",
+    "prev": "pr0018",
+    "next": "pr0020",
+    "type": "visualize",
+    "action": "moveToReducer",
+    "file": "f0010",
+    "selectedFile": ["f0010"],
+    "highlightLine": [12, 13, 14]
+  },
+  "pr0020": {
+    "id": "pr0020",
+    "prev": "pr0019",
+    "next": "pr0021",
+    "type": "visualize",
+    "action": "moveToDecrement"
+  },
+  "pr0021": {
+    "id": "pr0021",
+    "prev": "pr0020",
+    "next": "pr0022",
+    "type": "visualize",
+    "action": "updateCountInRedux",
+    "data": 0
+  },
+  "pr0022": {
+    "id": "pr0022",
+    "prev": "pr0021",
+    "next": "pr0023",
+    "type": "visualize",
+    "action": "moveStateToView",
+    "file": "f0009",
+    "selectedFile": ["f0009"],
+    "highlightLine": [6]
+  },
+  "pr0023": {
+    "id": "pr0023",
+    "prev": "pr0022",
+    "next": "pr0024",
+    "type": "visualize",
+    "action": "updateCountView",
+    "data": 0
+  },
+  "pr0024": {
+    "id": "pr0024",
+    "prev": "pr0023",
+    "next": null,
+    "type": "description",
+    "modalType": "tutorial_end",
+    "description": [{ "tag": "h2", "text": "Good job!" }],
+    "file": null
   }
 }
