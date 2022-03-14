@@ -46,6 +46,17 @@ p, pre, h1, h2, h3, h4, h5, h6 {
     opacity: 1;
   }
 }
+@keyframes scaleUp {
+  from {
+    transform: scale(1);
+  }
+  to {
+    transform: scale(1.2);
+    background: #FFFFFFC9;
+    color: #585858;
+    border: 0.1rem solid #433B3B;
+  }
+}
 `;
 
 export default GlobalStyle;
