@@ -1,37 +1,41 @@
 {
   "folders": [
-    { "id": "f0001", "type": "folder", "name": "public", "child": null },
+    { "id": "f0001", "type": "folder", "name": "public", "level": 1, "child": null },
     {
       "id": "f0002",
       "type": "folder",
       "name": "src",
+      "level": 1,
       "child": [
-        { "id": "f0003", "type": "file", "name": "index.js" },
-        { "id": "f0004", "type": "file", "name": "App.js" },
+        { "id": "f0003", "type": "file", "name": "index.js", "level": 2 },
+        { "id": "f0004", "type": "file", "name": "App.js", "level": 2 },
         {
           "id": "f0005",
           "type": "folder",
           "name": "app",
-          "child": [{ "id": "f0006", "type": "file", "name": "store.js" }]
+          "level": 2,
+          "child": [{ "id": "f0006", "type": "file", "name": "store.js", "level": 3 }]
         },
         {
           "id": "f0007",
           "type": "folder",
           "name": "feature",
+          "level": 2,
           "child": [
             {
               "id": "f0008",
               "type": "folder",
               "name": "counter",
+              "level": 3,
               "child": [
-                { "id": "f0009", "type": "file", "name": "Counter.js" },
-                { "id": "f0010", "type": "file", "name": "counterSlice.js" }
+                { "id": "f0009", "type": "file", "name": "Counter.js", "level": 4 },
+                { "id": "f0010", "type": "file", "name": "counterSlice.js", "level": 4 }
               ]
             }
           ]
         }
       ]
     },
-    { "id": "f0011", "type": "file", "name": "package.json", "child": null }
+    { "id": "f0011", "type": "file", "name": "package.json", "level": 1, "child": null }
   ]
 }

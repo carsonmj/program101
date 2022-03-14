@@ -3,13 +3,14 @@ import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
 
-import { fileSliceActions } from "../../../modules/slices/fileSlice";
 import { getCodeFileAPI } from "../../../apis";
+import { fileSliceActions } from "../../../modules/slices/fileSlice";
 
 const CodeEditor = () => {
   const dispatch = useDispatch();
   const currentFile = useSelector((state) => state.file.currentFile);
   const highlightLine = useSelector((state) => state.file.highlightLines);
+  const modalDirection = useSelector((state) => state.scenario.current?.modalDirection);
   const [codes, setCodes] = useState(null);
   const [codeLines, setCodeLines] = useState(null);
 
@@ -26,15 +27,23 @@ const CodeEditor = () => {
     if (currentFile) {
       codes && setCodeLines(codes[currentFile].code.split("\n"));
     }
-  }, [currentFile]);
+  }, [currentFile, setCodeLines]);
 
   useEffect(() => {
-    if (highlightLine && codeLines && highlightLine.length > 0) {
+    if (highlightLine && codeLines && modalDirection && highlightLine.length > 0) {
+      if (modalDirection === "right") {
+        const $li = document.querySelector(`#line1`);
+        const rect = $li.getBoundingClientRect();
+
+        dispatch(fileSliceActions.setModalCoordinate({ top: rect.y + rect.bottom, left: rect.x - 320 }));
+        return;
+      }
+
       const lastLine = highlightLine === "all" ? codeLines.length : highlightLine[highlightLine.length - 1];
       const $li = document.querySelector(`#line${lastLine}`);
       const rect = $li.getBoundingClientRect();
 
-      dispatch(fileSliceActions.setModalCoordinate({ top: rect.top + 20, left: rect.left + 50 }));
+      dispatch(fileSliceActions.setModalCoordinate({ top: rect.top + 30, left: rect.left + 50 }));
     }
   }, [highlightLine, codeLines]);
 
@@ -86,6 +95,7 @@ const LineWrapper = styled.ul`
 
     span {
       width: 3rem;
+      line-height: 2rem;
       text-align: left;
     }
   }
@@ -98,6 +108,15 @@ const LineWrapper = styled.ul`
     width: 100%;
     padding: 0;
     margin: 0;
+    line-height: 2rem;
+    white-space: pre-wrap;
+  }
+
+  p {
+    width: 100%;
+    padding: 0;
+    margin: 0;
+    line-height: 2rem;
     white-space: pre-wrap;
   }
 `;

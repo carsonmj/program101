@@ -1,6 +1,6 @@
 import { call, put, takeEvery } from "redux-saga/effects";
 
-import { getScenariosAPI, getFilesAPI } from "../../apis";
+import { getScenariosAPI } from "../../apis";
 import { scenarioSliceActions } from "../slices/scenarioSlice";
 
 function* getScenariosSaga() {

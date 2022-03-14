@@ -1,4 +1,4 @@
-import React, { useRef, useEffect } from "react";
+import React, { useEffect, useState } from "react";
 
 import { debounce } from "lodash";
 import { useDispatch, useSelector } from "react-redux";
@@ -7,11 +7,13 @@ import styled from "styled-components";
 import { LightCircle } from "../../atoms";
 import { scenarioSliceActions } from "../../../modules/slices/scenarioSlice";
 
-const Visualization = (props) => {
+const Visualization = () => {
   const dispatch = useDispatch();
   const scenarios = useSelector((state) => state.scenario.scenarios);
   const current = useSelector((state) => state.scenario.current);
   const actions = useSelector((state) => state.scenario.visualizeAction);
+  const [countInRedux, setCountInRedux] = useState(1);
+  const [count, setCount] = useState(1);
 
   const handleAnimationEnd = debounce(() => {
     if (current?.type === "visualize") {
@@ -19,10 +21,18 @@ const Visualization = (props) => {
       dispatch(scenarioSliceActions.updateCurrentScenario(nextId));
       dispatch(scenarioSliceActions.updateCurrent(scenarios[nextId]));
     }
-  }, 2000);
+  }, 200);
 
   useEffect(() => {
     if (current?.type === "visualize" && current?.action) {
+      if (current.action === "updateCountInRedux") {
+        setCountInRedux(current.data);
+      }
+
+      if (current.action === "updateCountView") {
+        setCount(current.data);
+      }
+
       dispatch(scenarioSliceActions.updateVisualizeAction(current.action));
     }
   }, [current]);
@@ -30,69 +40,40 @@ const Visualization = (props) => {
   return (
     <Container onAnimationEnd={handleAnimationEnd} actions={actions}>
       <Wrapper>
-        <StoreBox
-          actions={actions}
-          className={current?.type === "visualize" && current?.action === "showStore" && "fadeIn"}
-        >
+        <StoreBox actions={actions} animation={current?.action}>
           <StoreLeftSide>
-            <Dispatch
-              actions={actions}
-              className={current?.type === "visualize" && current?.action === "showStore" && "fadeIn"}
-            >
+            <Dispatch actions={actions} animation={current?.action}>
               Dispatch
             </Dispatch>
             <Text align="left">Store</Text>
           </StoreLeftSide>
           <StoreRightSide>
-            <ReducerBox
-              actions={actions}
-              className={current?.type === "visualize" && current?.action === "showReducerAndState" && "fadeIn"}
-            >
+            <ReducerBox actions={actions} animation={current?.action}>
               <Text align="center">Reducer</Text>
-              <BoxWrapper
-                actions={actions}
-                className={current?.type === "visualize" && current?.action === "showReducers" && "fadeIn"}
-              >
+              <BoxWrapper actions={actions} animation={current?.action}>
                 <InnerBox>increment</InnerBox>
-                <InnerBox>decrement</InnerBox>
+                <InnerBox animation={current?.action}>decrement</InnerBox>
               </BoxWrapper>
             </ReducerBox>
-            <StateBox
-              actions={actions}
-              className={current?.type === "visualize" && current?.action === "showReducerAndState" && "fadeIn"}
-            >
+            <StateBox actions={actions} animation={current?.action}>
               <Text align="center">State</Text>
-              <BoxWrapper
-                actions={actions}
-                className={current?.type === "visualize" && current?.action === "showReducerAndState" && "fadeIn"}
-              >
-                <InnerBox>count: 0</InnerBox>
-              </BoxWrapper>
+              <CounterBoxWrapper actions={actions} animation={current?.action}>
+                <CounterInRedux animation={current?.action}>{`count: ${countInRedux}`}</CounterInRedux>
+              </CounterBoxWrapper>
             </StateBox>
           </StoreRightSide>
         </StoreBox>
-        <ViewBox
-          actions={actions}
-          className={current?.type === "visualize" && current?.action === "showViewComponent" && "fadeIn"}
-        >
-          <DispatchActionBox>{`dispatch({ type: increment })`}</DispatchActionBox>
-          <CounterWrapper
-            actions={actions}
-            className={current?.type === "visualize" && current?.action === "showViewComponent" && "fadeIn"}
-          >
-            <MinusButton>-</MinusButton>
-            <CounterText>0</CounterText>
+        <ViewBox actions={actions} animation={current?.action}>
+          <DispatchActionBox animation={current?.action}>{"dispatch({ type: counter/decrement })"}</DispatchActionBox>
+          <CounterWrapper actions={actions} animation={current?.action}>
+            <MinusButton animation={current?.action}>-</MinusButton>
+            <CounterText animation={current?.action}>{count}</CounterText>
             <PlusButton>+</PlusButton>
           </CounterWrapper>
           <Text color="dark">View</Text>
         </ViewBox>
-        <PathBox
-          actions={actions}
-          className={current?.type === "visualize" && current?.action === "showPath" && "fadeInPath"}
-        >
-          <Circle
-            className={current?.type === "visualize" && current?.action === "moveStateToView" && "moveStateToView"}
-          >
+        <PathBox actions={actions} animation={current?.action}>
+          <Circle animation={current?.action}>
             <LightCircle />
           </Circle>
         </PathBox>
@@ -111,22 +92,6 @@ const Container = styled.div`
   height: 61rem;
   margin-top: 3rem;
   color: ${({ theme }) => theme.colors.white_1};
-
-  .fadeIn {
-    animation: fadeIn 0.5s linear 1;
-    animation-fill-mode: forwards;
-  }
-
-  .fadeInPath {
-    animation: fadeInPath 3s linear 1;
-    animation-fill-mode: forwards;
-  }
-
-  .moveStateToView {
-    visibility: visible;
-    animation: moveStateToView 3s linear 1;
-    animation-fill-mode: forwards;
-  }
 
   @keyframes fadeInPath {
     0% {
@@ -181,6 +146,60 @@ const Container = styled.div`
       left: 470px;
     }
   }
+
+  @keyframes moveViewToDispatch {
+    0% {
+      top: 255px;
+      left: 40px;
+    }
+    20% {
+      top: 255px;
+      left: -25px;
+    }
+    80% {
+      top: -25px;
+      left: -25px;
+    }
+    100% {
+      top: -25px;
+      left: 30px;
+    }
+  }
+
+  @keyframes blink {
+    0% {
+      box-shadow: 1px 1px 2px gray, 0 0 25px white, 0 0 5px yellow;
+    }
+    100% {
+      background: #f1e1c2c9;
+    }
+  }
+
+  @keyframes blink_white {
+    0% {
+      box-shadow: 1px 1px 2px gray, 0 0 25px white, 0 0 5px pink;
+    }
+    100% {
+      background: #d5cdcd;
+    }
+  }
+
+  @keyframes showDispatchAction {
+    0% {
+      visibility: visible;
+      opacity: 0;
+      box-shadow: 1px 1px 2px gray, 0 0 25px white, 0 0 5px yellow;
+    }
+    50% {
+      visibility: visible;
+      opacity: 1;
+      box-shadow: 1px 1px 2px gray, 0 0 25px white, 0 0 5px yellow;
+    }
+    100% {
+      visibility: hidden;
+      opacity: 0;
+    }
+  }
 `;
 
 const Wrapper = styled.div`
@@ -200,6 +219,15 @@ const StoreBox = styled.div`
   background: ${({ theme }) => theme.opacityColors.grayblue_1};
   border-radius: 1rem;
   z-index: 2;
+
+  ${({ animation }) => {
+    if (animation === "showStore") {
+      return `
+        animation: fadeIn 0.5s linear 1;
+        animation-fill-mode: forwards;
+      `;
+    }
+  }}
 `;
 
 const ViewBox = styled.div`
@@ -215,6 +243,15 @@ const ViewBox = styled.div`
   border-radius: 1rem;
   margin-top: 4rem;
   z-index: 2;
+
+  ${({ animation }) => {
+    if (animation === "showViewComponent") {
+      return `
+        animation: fadeIn 0.5s linear 1;
+        animation-fill-mode: forwards;
+      `;
+    }
+  }}
 `;
 
 const StoreLeftSide = styled.div`
@@ -239,23 +276,41 @@ const StoreRightSide = styled.div`
 const ReducerBox = styled.div`
   width: 24rem;
   height: 14rem;
-  visibility: hidden;
   visibility: ${({ actions }) => (actions.includes("showReducerAndState") ? "visible" : "hidden")};
   background: ${({ theme }) => theme.opacityColors.pink_1};
   border-radius: 1rem;
   z-index: 2;
-  animation: rotateBorder 1s linear 1;
+
+  ${({ animation }) => {
+    if (animation === "showReducerAndState") {
+      return `
+        animation: fadeIn 0.5s linear 1;
+        animation-fill-mode: forwards;
+      `;
+    }
+
+    if (animation === "moveToReducer") {
+      return "animation: blink_white 0.8s linear 1;";
+    }
+  }}
 `;
 
 const StateBox = styled.div`
   width: 24rem;
   height: 14rem;
-  visibility: hidden;
   visibility: ${({ actions }) => (actions.includes("showReducerAndState") ? "visible" : "hidden")};
   background: ${({ theme }) => theme.opacityColors.yellow_1};
   border-radius: 1rem;
   z-index: 2;
-  animation: rotateBorder 1s linear 1;
+
+  ${({ animation }) => {
+    if (animation === "showReducerAndState") {
+      return `
+        animation: fadeIn 0.5s linear 1;
+        animation-fill-mode: forwards;
+      `;
+    }
+  }}
 `;
 
 const Dispatch = styled.div`
@@ -273,6 +328,19 @@ const Dispatch = styled.div`
   font-weight: ${({ theme }) => theme.fontWeights.mid};
   text-align: center;
   z-index: 2;
+
+  ${({ animation }) => {
+    if (animation === "showStore") {
+      return `
+        animation: fadeIn 0.5s linear 1;
+        animation-fill-mode: forwards;
+      `;
+    }
+
+    if (animation === "blinkDispatch") {
+      return "animation: blink 0.5s linear 2";
+    }
+  }}
 `;
 
 const PathBox = styled.div`
@@ -283,10 +351,18 @@ const PathBox = styled.div`
   height: 28rem;
   visibility: ${({ actions }) => (actions.includes("showPath") ? "visible" : "hidden")};
   background: transparent;
-  // border: 0.2rem dashed transparent;
   border: 0.1rem solid ${({ theme }) => theme.colors.grayblue_1};
   border-radius: 0.4rem;
   z-index: 0;
+
+  ${({ animation }) => {
+    if (animation === "showPath") {
+      return `
+      animation: fadeInPath 3s linear 1;
+      animation-fill-mode: forwards;
+      `;
+    }
+  }}
 `;
 
 const Circle = styled.div`
@@ -295,6 +371,24 @@ const Circle = styled.div`
   left: 0;
   visibility: hidden;
   z-index: 1;
+
+  ${({ animation }) => {
+    if (animation === "moveStateToView") {
+      return `
+        visibility: visible;
+        animation: moveStateToView 2s linear 1;
+        animation-fill-mode: forwards;
+      `;
+    }
+
+    if (animation === "moveViewToDispatch") {
+      return `
+        visibility: visible;
+        animation: moveViewToDispatch 2s linear 1;
+        animation-fill-mode: forwards;
+      `;
+    }
+  }}
 `;
 
 const BoxWrapper = styled.div`
@@ -302,9 +396,34 @@ const BoxWrapper = styled.div`
   justify-content: space-around;
   width: 100%;
   visibility: ${({ actions }) => (actions && actions.includes("showReducers") ? "visible" : "hidden")};
+
+  ${({ animation }) => {
+    if (animation === "showReducers") {
+      return `
+        animation: fadeIn 0.5s linear 1;
+        animation-fill-mode: forwards;
+      `;
+    }
+  }}
 `;
 
-const InnerBox = styled.div`
+const CounterBoxWrapper = styled.div`
+  display: flex;
+  justify-content: space-around;
+  width: 100%;
+  visibility: ${({ actions }) => (actions && actions.includes("showReducerAndState") ? "visible" : "hidden")};
+
+  ${({ animation }) => {
+    if (animation === "showReducerAndState") {
+      return `
+        animation: fadeIn 0.5s linear 1;
+        animation-fill-mode: forwards;
+      `;
+    }
+  }}
+`;
+
+const CounterInRedux = styled.div`
   width: 10rem;
   height: 5rem;
   line-height: 5rem;
@@ -312,7 +431,19 @@ const InnerBox = styled.div`
   background: ${({ theme }) => theme.opacityColors.white_1};
   color: ${({ theme }) => theme.colors.gray_3};
   text-align: center;
-  animation: rotateBorder 1s linear 1;
+
+  ${({ animation }) => {
+    // if (animation === "showReducerAndState") {
+    //   return `
+    //     animation: fadeIn 0.5s linear 1;
+    //     animation-fill-mode: forwards;
+    //   `;
+    // }
+
+    if (animation === "updateCountInRedux") {
+      return "animation: blink 1s linear 2;";
+    }
+  }}
 `;
 
 const Text = styled.div`
@@ -332,10 +463,20 @@ const CounterWrapper = styled.div`
   justify-content: space-evenly;
   width: 18rem;
   height: 4rem;
+  margin-bottom: 4rem;
   visibility: ${({ actions }) => (actions && actions.includes("showViewComponent") ? "visible" : "hidden")};
   boder-radius: 1rem;
   border-radius: 1rem;
   box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+
+  ${({ animation }) => {
+    if (animation === "showViewComponent") {
+      return `
+        animation: fadeIn 0.5s linear 1;
+        animation-fill-mode: forwards;
+      `;
+    }
+  }}
 `;
 
 const MinusButton = styled.div`
@@ -346,6 +487,14 @@ const MinusButton = styled.div`
   background: ${({ theme }) => theme.colors.darkblue_1};
   font-size: ${({ theme }) => theme.fontSizes.head2};
   border-radius: 1rem 0rem 0rem 1rem;
+
+  ${({ animation }) => {
+    if (animation === "showClickEvent") {
+      return `
+        animation: blink 1s linear 2;
+      `;
+    }
+  }}
 `;
 
 const PlusButton = styled.div`
@@ -366,14 +515,51 @@ const CounterText = styled.div`
   background: ${({ theme }) => theme.colors.white_1};
   color: ${({ theme }) => theme.colors.darkblue_2};
   font-size: ${({ theme }) => theme.fontSizes.head6};
+
+  ${({ animation }) => {
+    if (animation === "blinkCounter" || animation === "updateCountView") {
+      return `
+        animation: blink 1s linear 2;
+      `;
+    }
+  }}
 `;
 
 const DispatchActionBox = styled.div`
-  width: 24rem;
+  width: 28rem;
   height: 3.5rem;
   line-height: 3.5rem;
   visibility: ${({ actions }) => (actions && actions.includes("showViewComponent") ? "visible" : "hidden")};
+  visibility: hidden;
+  margin-bottom: 2rem;
   border-radius: 2rem;
   background: ${({ theme }) => theme.colors.grayblue_1};
+  background: #3d4c70;
   text-align: center;
+
+  ${({ animation }) => {
+    if (animation === "dispatchCall") {
+      return `
+        animation: showDispatchAction 2s linear 2;
+      `;
+    }
+  }}
+`;
+
+const InnerBox = styled.div`
+  width: 10rem;
+  height: 5rem;
+  line-height: 5rem;
+  border-radius: 1rem;
+  background: ${({ theme }) => theme.opacityColors.white_1};
+  color: ${({ theme }) => theme.colors.gray_3};
+  text-align: center;
+
+  ${({ animation }) => {
+    if (animation === "moveToDecrement") {
+      return `
+        animation: blink 1s linear 2;
+      `;
+    }
+  }}
 `;

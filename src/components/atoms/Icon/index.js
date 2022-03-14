@@ -1,9 +1,9 @@
 import React from "react";
 
-import PropTypes from "prop-types";
-import { FaFileCode, FaFolderOpen } from "react-icons/fa";
-import { BiChevronLeft, BiChevronRight, BiX } from "react-icons/bi";
 import { noop } from "lodash";
+import PropTypes from "prop-types";
+import { BiChevronLeft, BiChevronRight, BiX } from "react-icons/bi";
+import { FaFileCode, FaFolderOpen, FaBell } from "react-icons/fa";
 import styled from "styled-components";
 
 import themes from "../../../styles/theme";
@@ -22,6 +22,8 @@ const getIcon = (type) => {
       return <BiChevronRight />;
     case "close":
       return <BiX />;
+    case "bell":
+      return <FaBell />;
   }
 };
 

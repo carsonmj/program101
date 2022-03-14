@@ -1,5 +1,5 @@
 import MainTemplate from "./MainTemplate";
-import TooltipModal from "./TooltipModal";
 import Portal from "./Portal";
+import TooltipModal from "./TooltipModal";
 
-export { MainTemplate, TooltipModal, Portal };
+export { MainTemplate, Portal, TooltipModal };

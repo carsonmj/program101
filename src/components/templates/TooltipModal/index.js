@@ -2,8 +2,8 @@ import React from "react";
 
 import { noop } from "lodash";
 import PropTypes from "prop-types";
-import styled from "styled-components";
 import { useSelector } from "react-redux";
+import styled from "styled-components";
 
 import { StepButton } from "../../molecules";
 
@@ -45,8 +45,6 @@ const TooltipBox = styled.div`
   position: absolute;
   top: ${({ top }) => top}px;
   left: ${({ left }) => left}px;
-  // transform: translate(calc(1420px - 930px - 300px), calc(83px + 15px));
-  // transform: translate(calc(921px - 729px - 200px), calc(140px - 28px - 50px));
   min-width: 15rem;
   min-height: 10rem;
   height: fit-content;
@@ -64,6 +62,7 @@ const TooltipBox = styled.div`
   border-radius: 0.4rem;
   background: ${({ theme }) => theme.colors.white_1};
   z-index: 100;
+  animation: fadeIn 0.5s linear 1;
 
   &:before {
     content: "";
@@ -100,7 +99,6 @@ const TooltipBox = styled.div`
     border-radius: 0.4rem;
     background: ${({ theme }) => theme.colors.white_1};
     transform: rotate(135deg);
-    transition: border 0.4s ease-in-out;
   }
 `;
 
@@ -108,6 +106,7 @@ const ContentWrapper = styled.div`
   display: flex;
   flex-direction: column;
   font-size: ${({ theme }) => theme.fontSizes.md};
+  transition: 0.8s;
 
   a {
     cursor: pointer;
@@ -117,6 +116,10 @@ const ContentWrapper = styled.div`
   li {
     margin-top: ${({ theme }) => theme.space.md};
     list-style-type: disc;
+  }
+
+  p {
+    margin-top: ${({ theme }) => theme.space.md};
   }
 
   div {
@@ -142,4 +145,5 @@ const ButtonWrapper = styled.div`
   display: flex;
   justify-content: flex-end;
   margin: 2rem 0;
+  transition: 0.8s;
 `;

@@ -6,11 +6,16 @@ import styled from "styled-components";
 
 import { StepButton } from "../../molecules";
 
-const DefaultModal = ({ children, onPrevClick, onNextClick }) => {
+const DivideModal = ({ left, right, onPrevClick, onNextClick }) => {
   return (
     <Overlay>
       <Container>
-        <ContentWrapper>{children}</ContentWrapper>
+        <ContentWrapper>
+          <Division id="d">{left}</Division>
+          <Division className="rightSide" id="d">
+            {right}
+          </Division>
+        </ContentWrapper>
         <ButtonWrapper>
           <StepButton onPrevClick={onPrevClick} onNextClick={onNextClick} />
         </ButtonWrapper>
@@ -19,15 +24,16 @@ const DefaultModal = ({ children, onPrevClick, onNextClick }) => {
   );
 };
 
-export default DefaultModal;
+export default DivideModal;
 
-DefaultModal.propTypes = {
-  children: PropTypes.node.isRequired,
+DivideModal.propTypes = {
+  left: PropTypes.node.isRequired,
+  right: PropTypes.node.isRequired,
   onPrevClick: PropTypes.func,
   onNextClick: PropTypes.func,
 };
 
-DefaultModal.defaultProps = {
+DivideModal.defaultProps = {
   onPrevClick: noop,
   onNextClick: noop,
 };
@@ -53,7 +59,7 @@ const Container = styled.div`
   align-items: center;
   min-width: 20rem;
   min-height: 20rem;
-  max-width: 100%;
+  max-width: 80%;
   max-height: calc(100% - 10rem);
   padding: ${({ theme }) => theme.space.md};
   padding-top: calc(${({ theme }) => theme.space.xl} * 2);
@@ -64,10 +70,31 @@ const Container = styled.div`
 
 const ContentWrapper = styled.div`
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin: 2rem;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: center;
+  width: 100%;
   font-size: ${({ theme }) => theme.fontSizes.md};
+
+  .rightSide {
+    margin-left: 5rem;
+  }
+`;
+
+const Division = styled.div`
+  display: flex;
+  width: 40%;
+  justify-content: space-around;
+  flex-direction: column;
+  align-items: flex-start
+  margin-left: 1rem;
+  font-family: sans-serif, NanumGothic, 'Noto Sans KR';
+
+  pre {
+    margin-top: ${({ theme }) => theme.space.md};
+    white-space: pre-wrap;
+    font-family: 'Apple SD Gothic Neo';
+  }
 
   a {
     cursor: pointer;
@@ -75,16 +102,14 @@ const ContentWrapper = styled.div`
   }
 
   li {
-    margin-top: ${({ theme }) => theme.space.md};
+    margin-top: 3rem;
+    font-size: 1.2rem;
+    font-weight: 700;
     list-style-type: disc;
   }
 
   p {
     margin-top: ${({ theme }) => theme.space.md};
-  }
-
-  div {
-    display: flex;
   }
 
   h1,
@@ -93,14 +118,9 @@ const ContentWrapper = styled.div`
   h4,
   h5,
   h6 {
-    margin: ${({ theme }) => theme.space.xl};
-  }
-
-  div {
     width: 100%;
-    display: flex;
-    justify-content: space-around;
-    font-weight: 700;
+    text-align: center;
+    margin: ${({ theme }) => theme.space.xl};
   }
 `;
 

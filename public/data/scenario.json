@@ -521,13 +521,20 @@
   "tt0023": {
     "id": "tt0023",
     "prev": "tt0022",
-    "next": "tt0024",
+    "next": "tt0100",
     "type": "visualize",
     "action": "moveStateToView"
   },
+  "tt0100": {
+    "id": "tt0100",
+    "prev": "tt0023",
+    "next": "tt0024",
+    "type": "visualize",
+    "action": "blinkCounter"
+  },
   "tt0024": {
     "id": "tt0024",
-    "prev": "tt0023",
+    "prev": "tt0100",
     "next": "tt0025",
     "type": "description",
     "modalType": "tooltip",
@@ -543,5 +550,70 @@
       }
     ],
     "highlightLine": [15]
+  },
+  "tt0025": {
+    "id": "tt0025",
+    "prev": "tt0024",
+    "next": "tt0026",
+    "type": "visualize",
+    "action": "showClickEvent"
+  },
+  "tt0026": {
+    "id": "tt0026",
+    "prev": "tt0025",
+    "next": "tt0027",
+    "type": "visualize",
+    "action": "dispatchCall"
+  },
+  "tt0027": {
+    "id": "tt0027",
+    "prev": "tt0026",
+    "next": "tt0028",
+    "type": "visualize",
+    "action": "moveViewToDispatch"
+  },
+  "tt0028": {
+    "id": "tt0028",
+    "prev": "tt0027",
+    "next": "tt0029",
+    "type": "visualize",
+    "action": "blinkDispatch"
+  },
+  "tt0029": {
+    "id": "tt0029",
+    "prev": "tt0028",
+    "next": "tt0030",
+    "type": "visualize",
+    "action": "moveToReducer"
+  },
+  "tt0030": {
+    "id": "tt0030",
+    "prev": "tt0029",
+    "next": "tt0031",
+    "type": "visualize",
+    "action": "moveToDecrement"
+  },
+  "tt0031": {
+    "id": "tt0031",
+    "prev": "tt0030",
+    "next": "tt0032",
+    "type": "visualize",
+    "action": "updateCount",
+    "data": 0
+  },
+  "tt0032": {
+    "id": "tt0032",
+    "prev": "tt0031",
+    "next": "tt0033",
+    "type": "visualize",
+    "action": "moveStateToView"
+  },
+  "tt0033": {
+    "id": "tt0033",
+    "prev": "tt0032",
+    "next": "tt0034",
+    "type": "visualize",
+    "action": "updateCountView",
+    "data": 0
   }
 }

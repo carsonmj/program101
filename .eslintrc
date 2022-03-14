@@ -45,6 +45,8 @@
     "react/function-component-definition": 0,
     "default-case": 0,
     "import/no-cycle": 0,
-    "react/jsx-no-useless-fragment": 0
+    "react/jsx-no-useless-fragment": 0,
+    "no-shadow": 0,
+    "react/jsx-boolean-value": 0
   }
 }

@@ -2,13 +2,10 @@ import React from "react";
 
 import styled from "styled-components";
 
-import { Button } from "../../atoms";
-
 const Header = () => {
   return (
     <Container>
       <Logo />
-      <Button text="restart" />
     </Container>
   );
 };

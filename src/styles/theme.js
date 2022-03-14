@@ -41,9 +41,10 @@ const space = {
 const colors = {
   black_1: "#18181C",
   black_2: "#433B3B",
-  // darkblue_1: "#201D47",
   darkblue_1: "#141229",
   darkblue_2: "#222033",
+  darkblue_3: "#201D47",
+  lightdarkblue_1: "#2b2941",
   grayblue_1: "#6F6C99",
   gray_1: "#585858",
   gray_2: "#585858",
@@ -53,6 +54,7 @@ const colors = {
   lightblue_2: "#53B9EA",
   green_1: "#3AC090",
   yellow_1: "#F5A623",
+  pink_1: "#F88080",
   white_1: "#FFFFFF",
 };
 
