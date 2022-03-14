@@ -59,21 +59,28 @@ const Container = styled.div`
   padding-top: calc(${({ theme }) => theme.space.xl} * 2);
   border-radius: ${({ theme }) => theme.space.md};
   background-color: ${({ theme }) => theme.colors.white_1};
+  animation: fadeIn 0.5s linear 1;
 `;
 
 const ContentWrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  margin: 2rem;
   font-size: ${({ theme }) => theme.fontSizes.md};
 
   a {
     cursor: pointer;
-    color: ${({ theme }) => theme.colors.gray_1};
+    color: ${({ theme }) => theme.colors.green_1};
   }
 
   li {
+    margin-top: ${({ theme }) => theme.space.md};
     list-style-type: disc;
+  }
+
+  p {
+    margin-top: ${({ theme }) => theme.space.md};
   }
 
   div {
@@ -87,6 +94,13 @@ const ContentWrapper = styled.div`
   h5,
   h6 {
     margin: ${({ theme }) => theme.space.xl};
+  }
+
+  div {
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    font-weight: 700;
   }
 `;
 
