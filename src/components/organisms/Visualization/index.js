@@ -4,8 +4,8 @@ import { debounce } from "lodash";
 import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
 
-import { LightCircle } from "../../atoms";
 import { scenarioSliceActions } from "../../../modules/slices/scenarioSlice";
+import { LightCircle } from "../../atoms";
 
 const Visualization = () => {
   const dispatch = useDispatch();
@@ -223,7 +223,7 @@ const StoreBox = styled.div`
   ${({ animation }) => {
     if (animation === "showStore") {
       return `
-        animation: fadeIn 0.5s linear 1;
+        animation: fadeIn 1s linear 1;
         animation-fill-mode: forwards;
       `;
     }
@@ -247,7 +247,7 @@ const ViewBox = styled.div`
   ${({ animation }) => {
     if (animation === "showViewComponent") {
       return `
-        animation: fadeIn 0.5s linear 1;
+        animation: fadeIn 1s linear 1;
         animation-fill-mode: forwards;
       `;
     }
@@ -284,7 +284,7 @@ const ReducerBox = styled.div`
   ${({ animation }) => {
     if (animation === "showReducerAndState") {
       return `
-        animation: fadeIn 0.5s linear 1;
+        animation: fadeIn 1s linear 1;
         animation-fill-mode: forwards;
       `;
     }
@@ -306,7 +306,7 @@ const StateBox = styled.div`
   ${({ animation }) => {
     if (animation === "showReducerAndState") {
       return `
-        animation: fadeIn 0.5s linear 1;
+        animation: fadeIn 1s linear 1;
         animation-fill-mode: forwards;
       `;
     }
@@ -332,13 +332,13 @@ const Dispatch = styled.div`
   ${({ animation }) => {
     if (animation === "showStore") {
       return `
-        animation: fadeIn 0.5s linear 1;
+        animation: fadeIn 1s linear 1;
         animation-fill-mode: forwards;
       `;
     }
 
     if (animation === "blinkDispatch") {
-      return "animation: blink 0.5s linear 2";
+      return "animation: blink 1s linear 2";
     }
   }}
 `;
@@ -376,7 +376,7 @@ const Circle = styled.div`
     if (animation === "moveStateToView") {
       return `
         visibility: visible;
-        animation: moveStateToView 2s linear 1;
+        animation: moveStateToView 4s linear 1;
         animation-fill-mode: forwards;
       `;
     }
@@ -384,11 +384,32 @@ const Circle = styled.div`
     if (animation === "moveViewToDispatch") {
       return `
         visibility: visible;
-        animation: moveViewToDispatch 2s linear 1;
+        animation: moveViewToDispatch 4s linear 1;
         animation-fill-mode: forwards;
       `;
     }
   }}
+
+  &:before {
+    position: absolute;
+    left: 0.8rem;
+    top: -1.2rem;
+    font-weight: 300;
+
+    ${({ animation }) => {
+      switch (animation) {
+        case "moveStateToView":
+          return `
+            content: "state";
+          `;
+        case "moveViewToDispatch":
+          return `
+            content: "dispatch";
+            left: 0.2rem;
+          `;
+      }
+    }}
+  }
 `;
 
 const BoxWrapper = styled.div`
@@ -400,7 +421,7 @@ const BoxWrapper = styled.div`
   ${({ animation }) => {
     if (animation === "showReducers") {
       return `
-        animation: fadeIn 0.5s linear 1;
+        animation: fadeIn 1s linear 1;
         animation-fill-mode: forwards;
       `;
     }
@@ -416,7 +437,7 @@ const CounterBoxWrapper = styled.div`
   ${({ animation }) => {
     if (animation === "showReducerAndState") {
       return `
-        animation: fadeIn 0.5s linear 1;
+        animation: fadeIn 1s linear 1;
         animation-fill-mode: forwards;
       `;
     }
@@ -529,18 +550,16 @@ const DispatchActionBox = styled.div`
   width: 28rem;
   height: 3.5rem;
   line-height: 3.5rem;
-  visibility: ${({ actions }) => (actions && actions.includes("showViewComponent") ? "visible" : "hidden")};
   visibility: hidden;
   margin-bottom: 2rem;
   border-radius: 2rem;
   background: ${({ theme }) => theme.colors.grayblue_1};
-  background: #3d4c70;
   text-align: center;
 
   ${({ animation }) => {
     if (animation === "dispatchCall") {
       return `
-        animation: showDispatchAction 2s linear 2;
+        animation: showDispatchAction 1.5s linear 2;
       `;
     }
   }}
