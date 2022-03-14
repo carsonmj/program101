@@ -55,8 +55,15 @@ const PracticeCodeEditor = ({ onAnswerDone }) => {
     }
   }, [currentFile]);
 
+  useEffect(() => {
+    if (currentScenario.id === "pr0014") {
+      const $target = document.querySelector("#container");
+      $target.scrollBy({ top: "400px", behavior: "smooth" });
+    }
+  }, [currentScenario]);
+
   return (
-    <Container>
+    <Container id="container">
       <LineWrapper>
         {codeLines &&
           codeLines.map((line, index) => {
