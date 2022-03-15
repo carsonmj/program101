@@ -41,6 +41,7 @@ const MainPage = () => {
   };
 
   const handlePracticeStartButtonClick = () => {
+    dispatch(scenarioSliceActions.resetVisualizeAction());
     dispatch(scenarioSliceActions.updateMode("practice"));
     dispatch(scenarioSliceActions.updateCurrentScenario("pr0001"));
     dispatch(scenarioSliceActions.updateCurrent(scenarios.pr0001));
@@ -124,6 +125,19 @@ const MainPage = () => {
             onClickRightButton={handlePracticeStartButtonClick}
             leftText="Try Again"
             rigthText="Start Practice"
+          >
+            {createDynamicElement(scenario.description)}
+          </GreetingModal>,
+        );
+        break;
+      case "practice_end":
+        setContent(
+          <GreetingModal
+            onClickClose={handleModalCloseClick}
+            onClickLeftButton={handleTutorialStartButtonClick}
+            onClickRightButton={handlePracticeStartButtonClick}
+            leftText="Start Tutorial"
+            rigthText="Try Again"
           >
             {createDynamicElement(scenario.description)}
           </GreetingModal>,
