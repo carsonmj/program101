@@ -33,7 +33,7 @@ const Answers = ({ isCorrectAnswer, onIsCorrectAnswerChnage }) => {
     <Container>
       <Body>
         <h3>Description</h3>
-        <p>위의 박스에 알맞은 코드를 선택해 위로 끌어올려 주세요.</p>
+        <p>아래 블럭에서 알맞은 코드를 선택하여 노란색 박스 영역으로 드래그 하세요.</p>
         <AnswersWrapper>
           {currentScenario &&
             practiceAnswers.map((answer) => (
