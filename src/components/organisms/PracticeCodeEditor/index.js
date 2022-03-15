@@ -58,7 +58,18 @@ const PracticeCodeEditor = ({ onAnswerDone }) => {
   useEffect(() => {
     if (currentScenario.id === "pr0014") {
       const $target = document.querySelector("#container");
-      $target.scrollBy({ top: "400px", behavior: "smooth" });
+      $target.scrollBy({
+        top: 500,
+        left: 0,
+        behavior: "smooth",
+      });
+
+      return;
+    }
+
+    if (currentScenario.id === "pr0019") {
+      const $target = document.querySelector("#container");
+      $target.scrollTo(0, 0);
     }
   }, [currentScenario]);
 
