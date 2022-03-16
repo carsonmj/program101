@@ -166,18 +166,9 @@ const Container = styled.div`
     }
   }
 
-  @keyframes blink {
-    0% {
-      box-shadow: 1px 1px 2px gray, 0 0 25px white, 0 0 5px yellow;
-    }
-    100% {
-      background: #f1e1c2c9;
-    }
-  }
-
   @keyframes blink_white {
     0% {
-      box-shadow: 1px 1px 2px gray, 0 0 25px white, 0 0 5px pink;
+      filter: drop-shadow(0.2rem 0.3rem 1rem pink);
     }
     100% {
       background: #d5cdcd;
@@ -187,13 +178,8 @@ const Container = styled.div`
   @keyframes showDispatchAction {
     0% {
       visibility: visible;
-      opacity: 0;
-      box-shadow: 1px 1px 2px gray, 0 0 25px white, 0 0 5px yellow;
-    }
-    50% {
-      visibility: visible;
       opacity: 1;
-      box-shadow: 1px 1px 2px gray, 0 0 25px white, 0 0 5px yellow;
+      filter: drop-shadow(0.2rem 0.3rem 1rem yellow);
     }
     100% {
       visibility: hidden;
@@ -454,13 +440,6 @@ const CounterInRedux = styled.div`
   text-align: center;
 
   ${({ animation }) => {
-    // if (animation === "showReducerAndState") {
-    //   return `
-    //     animation: fadeIn 0.5s linear 1;
-    //     animation-fill-mode: forwards;
-    //   `;
-    // }
-
     if (animation === "updateCountInRedux") {
       return "animation: blink 1s linear 2;";
     }
@@ -553,13 +532,15 @@ const DispatchActionBox = styled.div`
   visibility: hidden;
   margin-bottom: 2rem;
   border-radius: 2rem;
-  background: ${({ theme }) => theme.colors.grayblue_1};
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+  background: ${({ theme }) => theme.colors.white_1};
+  color: ${({ theme }) => theme.colors.gray_3};
   text-align: center;
 
   ${({ animation }) => {
     if (animation === "dispatchCall") {
       return `
-        animation: showDispatchAction 1.5s linear 2;
+        animation: showDispatchAction 2s linear 2;
       `;
     }
   }}
