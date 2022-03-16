@@ -10,7 +10,7 @@ const StepProgressBar = ({ labels }) => {
   const [progressPersentage, setProgressPersentage] = useState(0);
 
   useEffect(() => {
-    if (current === "tt0002" || current === "pr0001") {
+    if (current === "tt0001" || current === "tt0002" || current === "pr0001") {
       setProgressStatus({ 0: "stroke" });
       setProgressPersentage(0);
       return;
