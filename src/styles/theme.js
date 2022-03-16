@@ -23,6 +23,7 @@ const fontWeights = {
 };
 
 const iconSize = {
+  xxs: calcRem(1),
   xs: calcRem(1.5),
   sm: calcRem(2.0),
   md: calcRem(2.5),
