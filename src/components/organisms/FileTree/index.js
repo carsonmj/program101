@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 
+import PropTypes from "prop-types";
 import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
 
@@ -7,11 +8,21 @@ import { fileSliceActions } from "../../../modules/slices/fileSlice";
 import { flattenFiles, isSelectedFile } from "../../../utils";
 import { FileItem } from "../../molecules";
 
-const FileTree = () => {
+const FileTree = ({ isDone }) => {
   const dispatch = useDispatch();
   const fileTree = useSelector((state) => state.file.fileTree);
   const selectedFiles = useSelector((state) => state.file.selectedFiles);
   const [files, setFiles] = useState([]);
+
+  const handleFileItemClick = (id, type) => {
+    if (!isDone || type === "folder") {
+      return;
+    }
+
+    dispatch(fileSliceActions.setHighlightLines([]));
+    dispatch(fileSliceActions.setSelectedFiles([id]));
+    dispatch(fileSliceActions.setCurrentFile(id));
+  };
 
   useEffect(() => {
     if (fileTree) {
@@ -43,12 +54,17 @@ const FileTree = () => {
               name={name}
               depth={level}
               selected={isSelectedFile(selectedFiles, id)}
+              onClick={handleFileItemClick}
             />
           );
         })}
       </div>
     </Container>
   );
+};
+
+FileTree.propTypes = {
+  isDone: PropTypes.bool.isRequired,
 };
 
 export default FileTree;
