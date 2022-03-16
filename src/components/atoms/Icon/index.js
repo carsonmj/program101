@@ -3,7 +3,7 @@ import React from "react";
 import { noop } from "lodash";
 import PropTypes from "prop-types";
 import { BiChevronLeft, BiChevronRight, BiX } from "react-icons/bi";
-import { FaFileCode, FaFolderOpen, FaBell } from "react-icons/fa";
+import { FaFileCode, FaFolderOpen, FaBell, FaUndoAlt, FaUndo } from "react-icons/fa";
 import styled from "styled-components";
 
 import themes from "../../../styles/theme";
@@ -24,6 +24,8 @@ const getIcon = (type) => {
       return <BiX />;
     case "bell":
       return <FaBell />;
+    case "undo":
+      return <FaUndo />;
   }
 };
 
