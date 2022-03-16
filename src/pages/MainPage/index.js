@@ -219,7 +219,7 @@ const MainPage = () => {
         codeContent={
           <CodeContentWrapper>
             <EditorWrapper mode={mode}>
-              <FileTree />
+              <FileTree isDone={currentId === "pr0024" || currentId === "tt0034"} />
               {mode === "tutorial" ? <CodeEditor /> : <PracticeCodeEditor onAnswerDone={setIsCorrectAnswer} />}
             </EditorWrapper>
             <AnswersWrapper mode={mode}>
