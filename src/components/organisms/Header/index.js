@@ -29,13 +29,15 @@ const Header = () => {
         <Button
           text=" Tutorial"
           color={themes.colors.lightblue_1}
-          startIcon={<Icon type="undo" size="xxs" hasHover={false} />}
+          startIcon={<Icon type="undo" size="xxs" />}
+          hasHover={false}
           onClick={handleTutorialRestart}
         />
         <Button
           text=" Practice"
           color={themes.colors.green_1}
-          startIcon={<Icon type="undo" size="xxs" hasHover={false} />}
+          startIcon={<Icon type="undo" size="xxs" />}
+          hasHover={false}
           onClick={handlePracticeStartButtonClick}
         />
       </ButtonWrapper>
