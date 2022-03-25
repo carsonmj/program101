@@ -24,6 +24,11 @@ const Visualization = () => {
   }, 200);
 
   useEffect(() => {
+    if (current?.id === "pr0001") {
+      setCountInRedux(1);
+      setCount(1);
+    }
+
     if (current?.type === "visualize" && current?.action) {
       if (current.action === "updateCountInRedux") {
         setCountInRedux(current.data);
