@@ -1,0 +1,52 @@
+{
+  "root": true,
+  "extends": ["react-app", "airbnb", "plugin:jsx-a11y/recommended", "plugin:prettier/recommended"],
+  "plugins": ["simple-import-sort"],
+  "rules": {
+    "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
+    "jsx-a11y/label-has-associated-control": [1, { "assert": "htmlFor" }],
+    "jsx-a11y/label-has-for": [1, {
+      "required": {
+        "some": ["nesting", "id"]
+      }
+    }],
+    "import/order": [
+      1,
+      {
+        "groups": ["builtin", "external", ["parent", "sibling", "index"]],
+        "pathGroups": [
+          {
+            "pattern": "react",
+            "group": "external",
+            "position": "before"
+          }
+        ],
+        "pathGroupsExcludedImportTypes": ["react"],
+        "newlines-between": "always",
+        "alphabetize": {
+          "order": "asc",
+          "caseInsensitive": true
+        }
+      }
+    ],
+    "prettier/prettier": [2, { "endOfLine": "auto" }],
+    "no-unused-vars": 1,
+    "no-var": 2,
+    "no-console": 1,
+    "no-debugger": 1,
+    "no-param-reassign": 1,
+    "no-use-before-define": [1, { "variables": false }],
+    "import/prefer-default-export": 1,
+    "react/jsx-props-no-spreading": 0,
+    "import/no-unresolved": 0,
+    "no-unused-expressions": 0,
+    "no-continue": 0,
+    "consistent-return": 0,
+    "react/function-component-definition": 0,
+    "default-case": 0,
+    "import/no-cycle": 0,
+    "react/jsx-no-useless-fragment": 0,
+    "no-shadow": 0,
+    "react/jsx-boolean-value": 0
+  }
+}

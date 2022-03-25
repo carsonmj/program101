@@ -1,0 +1,32 @@
+{
+  "f0003": {
+    "id": "f0003",
+    "name": "index.js",
+    "code": "import React from 'react';\nimport ReactDOM from 'react-dom';\nimport './index.css';\nimport App from './App';\nimport store from './app/store';\nimport { Provider } from 'react-redux';\nimport * as serviceWorker from './serviceWorker';\n\nReactDOM.render(\n  <Provider store={store}>\n    <App />\n  </Provider>,\n  document.getElementById('root'),\n);\n"
+  },
+  "f0004": {
+    "id": "f0004",
+    "name": "App.js",
+    "code": "import React from 'react';\nimport { Counter } from './features/counter/Counter';\nimport './App.css';\nfunction App() {\n  return (\n    <div className='App'>\n      <header className='App-header'>\n        <Counter />\n      </header>\n    </div>\n  );\n\nexport default App;\n"
+  },
+  "f0006": {
+    "id": "f0006",
+    "name": "store.js",
+    "code": "import { configureStore } from '@reduxjs/toolkit';\nimport counterReducer from '../features/counter/counterSlice';\n\nexport default configureStore({\n  reducer: {\n    counter: counterReducer,\n  },\n});\n"
+  },
+  "f0009": {
+    "id": "f0009",
+    "name": "Counter.js",
+    "code": "import React, { useState } from 'react';\nimport { useSelector, useDispatch } from 'react-redux';\nimport { decrement, increment, incrementByAmount } from './counterSlice';\n\nexport function Counter() {\n  const count = useSelector((state) => state.counter.value);\n  const dispatch = useDispatch();\n  const [incrementAmount, setIncrementAmount] = useState('1');\n  \n  return (\n    <div>\n      <div>\n        <button\n          aria-label='Increment value'\n          onClick={() => dispatch(increment())}\n        >\n          +\n        </button>\n        <span>{count}</span>\n        <button\n          aria-label='Decrement value'\n          onClick={() => dispatch(decrement())}\n        >\n          -\n        </button>\n      </div>\n    </div>\n  );\n}\n"
+  },
+  "f0010": {
+    "id": "f0010",
+    "name": "counterSlice.js",
+    "code": "import { createSlice } from '@reduxjs/toolkit';\n\nexport const counterSlice = createSlice({\n  name: 'counter',\n  initialState: {\n    value: 1,\n  },\n  reducers: {\n    increment: (state) => {\n      state.value += 1;\n    },\n    decrement: (state) => {\n      state.value -= 1;\n    },\n    incrementByAmount: (state, action) => {\n      state.value += action.payload;\n    },\n  },\n});\n\nexport const { increment, decrement, incrementByAmount } = counterSlice.actions;\n\nexport default counterSlice.reducer;\n"
+  },
+  "f0011": {
+    "id": "f0011",
+    "name": "package.json",
+    "code": "{\n  \"name\": \"redux-essentials-counter-example\",\n  \"version\": \"0.1.0\",  \"private\": true,\n  \"dependencies\": {\n    \"@reduxjs/toolkit\": \"^1.4.0\",\n    \"react\": \"^16.13.1\",\n    \"react-dom\": \"^16.13.1\",\n    \"react-redux\": \"^7.1.3\",\n    \"react-scripts\": \"3.4.1\"\n  },\n  \"scripts\": {\n    \"start\": \"react-scripts start\",\n    \"build\": \"react-scripts build\",\n    \"test\": \"react-scripts test\",\n    \"eject\": \"react-scripts eject\"\n  },\n  \"eslintConfig\": {\n    \"extends\": \"react-app\"\n  },\n  \"browserslist\": {\n    \"production\": [\n      \">0.2%\",\n      \"not dead\",\n      \"not op_mini all\"\n    ],\n    \"development\": [\n      \"last 1 chrome version\",\n      \"last 1 firefox version\",\n      \"last 1 safari version\"\n    ]\n  }\n}\n"
+  }
+}

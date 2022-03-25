@@ -1,25 +1,28 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useEffect } from "react";
 
-function App() {
+import { useDispatch } from "react-redux";
+
+import { MainPage } from "./pages";
+import { scenarioSliceActions } from "./modules/slices/scenarioSlice";
+import { fileSliceActions } from "./modules/slices/fileSlice";
+import useSound from "./hooks/useSound";
+
+const App = () => {
+  const dispatch = useDispatch();
+  const [playSound, stopSound] = useSound("/assets/bgm.mp3", 0.2, "infinite");
+
+  useEffect(() => {
+    playSound();
+
+    dispatch(scenarioSliceActions.getScenarios());
+    dispatch(fileSliceActions.getFiles());
+  }, []);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <MainPage />
     </div>
   );
-}
+};
 
 export default App;

@@ -1,0 +1,883 @@
+{
+  "head": "tt0001",
+  "tail": null,
+  "tt0001": {
+    "id": "tt0001",
+    "prev": null,
+    "next": "tt0002",
+    "type": "description",
+    "modalType": "welcome",
+    "description": [{ "tag": "h2", "text": "Welcome to Program 101!" }],
+    "file": null
+  },
+  "tt0002": {
+    "id": "tt0002",
+    "prev": "tt0001",
+    "next": "tt0003",
+    "type": "description",
+    "modalType": "default",
+    "description": [
+      {
+        "tag": "h3",
+        "text": "다음 사항을 알고 있다고 가정합니다."
+      },
+      {
+        "tag": "ul",
+        "direction": "row",
+        "text": [
+          {
+            "tag": "li",
+            "text": "HTML 및 CSS"
+          },
+          {
+            "tag": "li",
+            "text": "ES6 구문 및 기능"
+          },
+          {
+            "tag": "li",
+            "text": "React에 대한 지식"
+          },
+          {
+            "tag": "p",
+            "text": "(JSX, State, Functional Component, Props 및 Hooks)"
+          },
+          {
+            "tag": "br"
+          }
+        ]
+      },
+      {
+        "tag": "h4",
+        "text": "해당 주제가 익숙하지 않다면 아래 링크에서 학습 후 진행하시는 것을 추천합니다."
+      },
+      {
+        "tag": "a",
+        "text": "링크 바로가기",
+        "href": "https://book.vanillacoding.co/starter-kit/"
+      }
+    ],
+    "file": null
+  },
+  "tt0003": {
+    "id": "tt0003",
+    "prev": "tt0002",
+    "next": "tt0004",
+    "type": "description",
+    "modalType": "default",
+    "description": [
+      {
+        "tag": "h4",
+        "text": "튜토리얼에서는 Redux toolkit을 사용합니다. toolkit은 Redux 로직을 작성하는 데 권장되는 방법입니다."
+      },
+      { "tag": "h2", "text": "What is Redux?" },
+      {
+        "tag": "pre",
+        "text": "'액션'이라는 이벤트를 사용하여 애플리케이션 상태를 관리하고 업데이트하기 위한 패턴과 라이브러리 입니다.\nstate(상태)가 예측 가능한 방식으로만 업데이트될 수 있도록 “단방향 데이터 흐름” 규칙과 함께 전체 state(상태)에 대한 중앙 저장소 역할을 합니다."
+      },
+      {
+        "tag": "div",
+        "direction": "column",
+        "text": [
+          { "tag": "img", "src": "/assets/data_flow_1.gif", "width": "36rem", "height": "25rem" },
+          { "tag": "img", "src": "/assets/data_flow_2.gif", "width": "30rem", "height": "25rem" }
+        ]
+      },
+      {
+        "tag": "div",
+        "direction": "column",
+        "text": [
+          { "tag": "span", "text": "단방향 데이터 흐름" },
+          { "tag": "span", "text": "양방향 데이터 흐름" }
+        ]
+      }
+    ],
+    "file": null
+  },
+  "tt0004": {
+    "id": "tt0004",
+    "prev": "tt0003",
+    "next": "tt0005",
+    "type": "description",
+    "modalType": "default",
+    "description": [
+      { "tag": "h3", "text": "카운트 예제와 함께 Redux에 대해 배워볼까요?" },
+      {
+        "tag": "div",
+        "direction": "row",
+        "text": [
+          { "tag": "p", "text": "+ 버튼을 클릭하면 count가 1씩 증가합니다." },
+          { "tag": "p", "text": "ㅡ 버튼을 클릭하면 count가 1씩 감소합니다." }
+        ]
+      }
+    ],
+    "file": null
+  },
+  "tt0005": {
+    "id": "tt0005",
+    "prev": "tt0004",
+    "next": "tt0006",
+    "type": "description",
+    "modalType": "tooltip",
+    "modalDirection": "left",
+    "description": [
+      { "tag": "p", "text": "Redux 튜토리얼에서 설명할 예제의 구조는 다음과 같습니다." },
+      {
+        "tag": "div",
+        "direction": "row",
+        "text": [
+          { "tag": "h4", "text": "index.js: 앱의 시작점" },
+          { "tag": "h4", "text": "App.js: 최상위 React 컴포넌트" }
+        ]
+      }
+    ],
+    "file": null,
+    "selectedFile": ["f0003", "f0004"]
+  },
+  "tt0006": {
+    "id": "tt0006",
+    "prev": "tt0005",
+    "next": "tt0007",
+    "type": "description",
+    "modalType": "tooltip",
+    "modalDirection": "left",
+    "description": [
+      { "tag": "p", "text": "Redux 튜토리얼에서 설명할 예제의 구조는 다음과 같습니다." },
+      {
+        "tag": "div",
+        "direction": "row",
+        "text": [{ "tag": "h4", "text": "store.js: React 스토어 인스턴스를 생성하는 파일" }]
+      }
+    ],
+    "file": null,
+    "selectedFile": ["f0006"]
+  },
+  "tt0007": {
+    "id": "tt0007",
+    "prev": "tt0006",
+    "next": "tt0008",
+    "type": "description",
+    "modalType": "tooltip",
+    "modalDirection": "left",
+    "description": [
+      { "tag": "p", "text": "Redux 튜토리얼에서 설명할 예제의 구조는 다음과 같습니다." },
+      {
+        "tag": "div",
+        "direction": "row",
+        "text": [
+          { "tag": "h4", "text": "Counter.js: 카운터 기능에 대한 UI를 보여주는 React 컴포넌트" },
+          { "tag": "h4", "text": "counterSlice.js: 카운터 기능을 위한 Redux 로직이 작성되어 있는 파일" }
+        ]
+      }
+    ],
+    "file": null,
+    "selectedFile": ["f0009", "f0010"]
+  },
+  "tt0008": {
+    "id": "tt0008",
+    "prev": "tt0007",
+    "next": "tt0009",
+    "type": "description",
+    "modalType": "tooltip",
+    "modalDirection": "top-left",
+    "description": [
+      {
+        "tag": "ul",
+        "text": [
+          { "tag": "li", "text": "Redux 스토어는 toolkit `configureStore`를 사용하여 생성할 수 있습니다." },
+          { "tag": "li", "text": "configureStore에 인수로 reducer를 전달해야 합니다." },
+          { "tag": "li", "text": "reducer에는 state를 업데이트 시켜주는 로직이 담겨있습니다." },
+          {
+            "tag": "li",
+            "text": "reducer에 대한 추가 설명 및 2번째 줄에서 import한 counterReducer는 slice reducer 단계에서 진행됩니다."
+          }
+        ]
+      }
+    ],
+    "file": "f0006",
+    "highlightLine": "all",
+    "selectedFile": ["f0006"]
+  },
+  "tt0009": {
+    "id": "tt0009",
+    "prev": "tt0008",
+    "next": "tt0010",
+    "type": "visualize",
+    "action": "showStore"
+  },
+  "tt0010": {
+    "id": "tt0010",
+    "prev": "tt0009",
+    "next": "tt0011",
+    "type": "description",
+    "modalType": "tooltip",
+    "modalDirection": "top-left",
+    "description": [
+      {
+        "tag": "ul",
+        "text": [
+          {
+            "tag": "li",
+            "text": "{ counter: counterReducer } 와 같은 객체를 전달할 때 Redux state object에는 state.counter 섹션이 생성됩니다."
+          },
+          {
+            "tag": "li",
+            "text": "또한, 액션이 발생할 때 counterReducer 함수가 state.counter 섹션을 어떻게 업데이트할지 정합니다."
+          }
+        ]
+      }
+    ],
+    "highlightLine": [4, 5, 6, 7, 8]
+  },
+  "tt0011": {
+    "id": "tt0011",
+    "prev": "tt0010",
+    "next": "tt0012",
+    "type": "visualize",
+    "action": "showReducerAndState"
+  },
+  "tt0012": {
+    "id": "tt0012",
+    "prev": "tt0011",
+    "next": "tt0013",
+    "type": "description",
+    "modalType": "tooltip",
+    "modalDirection": "top-left",
+    "description": [
+      {
+        "tag": "h4",
+        "text": "app/store.js에서 import 했던 counterReducer에 대해 알아봅시다."
+      },
+      {
+        "tag": "ul",
+        "text": [
+          {
+            "tag": "li",
+            "text": "Redux toolkit의 createSlice를 사용하여 slice를 생성합니다."
+          }
+        ]
+      }
+    ],
+    "file": "f0010",
+    "highlightLine": [1],
+    "selectedFile": ["f0010"]
+  },
+  "tt0013": {
+    "id": "tt0013",
+    "prev": "tt0012",
+    "next": "tt0014",
+    "type": "description",
+    "modalType": "tooltip",
+    "modalDirection": "top-left",
+    "description": [
+      {
+        "tag": "h3",
+        "text": "createSlice란?"
+      },
+      {
+        "tag": "p",
+        "text": "createSlice는 아래의 인수들을 받아 자동으로 액션 생성자와 액션 타입을 생성하는 함수이다."
+      },
+      {
+        "tag": "ul",
+        "text": [
+          {
+            "tag": "li",
+            "text": "slice 이름"
+          },
+          {
+            "tag": "li",
+            "text": "initial state"
+          },
+          {
+            "tag": "li",
+            "text": "reducer 함수를 가진 객체"
+          }
+        ]
+      }
+    ],
+    "highlightLine": [3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19]
+  },
+  "tt0014": {
+    "id": "tt0014",
+    "prev": "tt0013",
+    "next": "tt0015",
+    "type": "description",
+    "modalType": "divide",
+    "description": {
+      "left": [
+        {
+          "tag": "h2",
+          "text": "Action"
+        },
+        {
+          "tag": "p",
+          "text": "Action은 type 필드를 가지고 있는 plain JavaScript Object입니다. 간단하게 설명하면 Action은 애플리케이션에서 어떤 일이 일어나는 것을 설명할 수 있는 이벤트라 할 수 있습니다."
+        },
+        { "tag": "img", "src": "/assets/action_code.png", "width": "22rem", "height": "10rem" },
+        {
+          "tag": "ul",
+          "text": [
+            {
+              "tag": "li",
+              "text": "type 필드"
+            },
+            {
+              "tag": "pre",
+              "text": "1) type 필드는 action을 묘사하는 이름(feature)를 가진 String이어햐 합니다.\n    (예시. todos/todoAdded)\n\n2) 보통 ‘도메인/이벤트이름' 과 같은 형식으로 사용합니다.\n  -도메인: action이 속한 카테고리의 특징 (todos)\n  -이벤트 이름: 어떤 이벤트가 발생했는지 구체적인 내용"
+            },
+            {
+              "tag": "li",
+              "text": "payload 필드"
+            },
+            {
+              "tag": "pre",
+              "text": "action은 추가 정보를 담고 있는 다른 필드를 가질 수 있습니다.\n보통 convention에 따라 payload라는 이름으로 작성합니다.\n\npayload에는 action이 발생했을 때 추가 정보를 제공하는 데이터를 담을 수 있습니다.\n예를 들어 todo에 완료된 일을 추가할 때, type 필드(todos/todoAdded)와 함께 완료된 일의 정보를 담은 payload(‘Study English’)를 설정하여 전달할 수 있습니다."
+            },
+            {
+              "tag": "li",
+              "text": "action creator(액션 생성자)"
+            },
+            {
+              "tag": "p",
+              "text": "액션 생성자는 위의 코드와 같은 포맷의 action object를 생성하고, action object를 반환하는 함수입니다. action creator를 사용하면 매번 action object를 생성하지 않아도 됩니다."
+            }
+          ]
+        }
+      ],
+      "right": [
+        {
+          "tag": "h2",
+          "text": "Reducer"
+        },
+        {
+          "tag": "p",
+          "text": "state에 변화를 일으키는 함수로, 현재 state와 action 객체를 받아 필요한 경우 상태(state)를 업데이트하는 방법을 결정하고, 새로운 상태(state)를 반환하는 함수입니다. \nreducer는 받은 action 유형에 따라 이벤트를 처리하는 이벤트 리스너라고 생각할 수 있습니다."
+        },
+        {
+          "tag": "ul",
+          "text": [
+            {
+              "tag": "li",
+              "text": "Rducer 내부 로직은 다음과 같다."
+            },
+            {
+              "tag": "pre",
+              "text": "1) action의 type이 조건에 맞는지 체크\n2) 맞다면, state의 복사본을 생성하고, 복사본을 새로운 값으로 업데이트 하고 반환\n3) 그렇지 않다면, 변경되지 않은 기존의 state를 반환"
+            },
+            {
+              "tag": "li",
+              "text": "Rducer 실행 흐름"
+            },
+            {
+              "tag": "pre",
+              "text": "1) view에서 action 발생 시, dispatch 메서드를 call 하여 action object를 인수로 넘기면\n\n2) Redux store는 자동으로 해당 action type에 부합하는 reducer function을 실행시킨다.\n\n-dispatch : action 발생시키는 것. 이벤트 트리거 역할(뒤에서 다시 다룹니다.)"
+            }
+          ]
+        }
+      ]
+    },
+    "file": null
+  },
+  "tt0015": {
+    "id": "tt0015",
+    "prev": "tt0014",
+    "next": "tt0016",
+    "type": "description",
+    "modalType": "tooltip",
+    "modalDirection": "top-left",
+    "description": [
+      {
+        "tag": "h3",
+        "text": "createSlice에서 action"
+      },
+      {
+        "tag": "ul",
+        "text": [
+          {
+            "tag": "li",
+            "text": "createSlice는 아래의 인수들을 받아 자동으로 액션 생성자와 액션 타입을 생성하는 함수입니다."
+          },
+          {
+            "tag": "li",
+            "text": "그 중 name은 각 action type의 첫 번째 부분으로 사용되며, 각 reducer 함수의 키 이름은 두 번째 부분으로 사용됩니다."
+          },
+          {
+            "tag": "li",
+            "text": "'counter'(name)와 'increment' (reducer fn)가 합쳐져 { type: 'counter/increment' }이라는 action type이 생성됩니다."
+          }
+        ]
+      }
+    ],
+    "highlightLine": [4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18]
+  },
+  "tt0016": {
+    "id": "tt0016",
+    "prev": "tt0015",
+    "next": "tt0017",
+    "type": "description",
+    "modalType": "tooltip_wide",
+    "modalDirection": "top-left",
+    "description": [
+      {
+        "tag": "h3",
+        "text": " Reducers and Immutable Updates"
+      },
+      {
+        "tag": "pre",
+        "text": "앞의 코드에서 reducers는 절대 origianl(current) state를 변경할 수 없다고 했습니다.\n\n따라서 reducer 로직을 작성할 때는 기존의 state를 복사한 후 복사본을 변경하여 새로운 state로 리턴합니다.(하지만 위의 코드에서 reducer는 기존의 state를 변경하는 것 처럼 보입니다.\n\n그 이유는 Redux Toolkit의 createSlice 내부에 Immer라는 라이브러리를 사용하여 데이터를 wrapping하고, wrapping된 데이터를 변경하는 코드를 작성할 수 있도록 합니다.\n\n내부에서 기존의 state를 복사하기 때문에 해당 변경 사항만 작성을 하여도 복제된 값을 반환합니다."
+      }
+    ],
+    "highlightLine": [8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18]
+  },
+  "tt0017": {
+    "id": "tt0017",
+    "prev": "tt0016",
+    "next": "tt0018",
+    "type": "visualize",
+    "action": "showReducers"
+  },
+  "tt0018": {
+    "id": "tt0018",
+    "prev": "tt0017",
+    "next": "tt0019",
+    "type": "description",
+    "modalType": "tooltip",
+    "modalDirection": "top-left",
+    "description": [
+      {
+        "tag": "h3",
+        "text": "state, action arguments"
+      },
+      {
+        "tag": "p",
+        "text": "incrementByAmount reducer는 counter에 어떤 값이 추가되어야 하는지 추가적인 정보가 필요합니다."
+      },
+      {
+        "tag": "p",
+        "text": "이때 reducer는 action 인수를 선언하여 action.payload에 입력된 값을 가지고 올 수 있습니다."
+      }
+    ],
+    "highlightLine": [15, 16, 17]
+  },
+  "tt0019": {
+    "id": "tt0019",
+    "prev": "tt0018",
+    "next": "tt0020",
+    "type": "description",
+    "modalType": "tooltip",
+    "modalDirection": "right",
+    "description": [
+      {
+        "tag": "h3",
+        "text": "Redux store와 React 컴포넌트연결 "
+      },
+      {
+        "tag": "p",
+        "text": "Redux store에 저장된 값을 React 컴포넌트에서 사용하고 해당 state를 변경하는 작업을 시작해볼까요?"
+      }
+    ],
+    "file": "f0009",
+    "highlightLine": "all",
+    "selectedFile": ["f0009"]
+  },
+  "tt0020": {
+    "id": "tt0020",
+    "prev": "tt0019",
+    "next": "tt0021",
+    "type": "visualize",
+    "action": "showViewComponent"
+  },
+  "tt0021": {
+    "id": "tt0021",
+    "prev": "tt0020",
+    "next": "tt0022",
+    "type": "visualize",
+    "action": "showPath"
+  },
+  "tt0022": {
+    "id": "tt0022",
+    "prev": "tt0021",
+    "next": "tt0023",
+    "type": "description",
+    "modalType": "tooltip",
+    "modalDirection": "top-left",
+    "description": [
+      {
+        "tag": "h3",
+        "text": "Reading Data with useSelector "
+      },
+      {
+        "tag": "p",
+        "text": "useSelector hook을 사용하면 Redux store state의 값을 가져올 수 있습니다."
+      },
+      {
+        "tag": "p",
+        "text": "Redux store를 subscribe하는 구조이므로 Redux store의 state값이 바뀌면 해당 state를 사용하는 컴포넌트는 리렌더링됩니다."
+      }
+    ],
+    "highlightLine": [6]
+  },
+  "tt0023": {
+    "id": "tt0023",
+    "prev": "tt0022",
+    "next": "tt0100",
+    "type": "visualize",
+    "action": "moveStateToView"
+  },
+  "tt0100": {
+    "id": "tt0100",
+    "prev": "tt0023",
+    "next": "tt0024",
+    "type": "visualize",
+    "action": "blinkCounter"
+  },
+  "tt0024": {
+    "id": "tt0024",
+    "prev": "tt0100",
+    "next": "tt0025",
+    "type": "description",
+    "modalType": "tooltip",
+    "modalDirection": "top-left",
+    "description": [
+      {
+        "tag": "h3",
+        "text": "Dispatch action"
+      },
+      {
+        "tag": "p",
+        "text": "사용자가 버튼을 클릭하는 것과 같은 작업을 수행할 때 action을 dispatch 하여 redux store의 state를 변경할 수있습니다."
+      }
+    ],
+    "highlightLine": [22]
+  },
+  "tt0025": {
+    "id": "tt0025",
+    "prev": "tt0024",
+    "next": "tt0026",
+    "type": "visualize",
+    "action": "showClickEvent"
+  },
+  "tt0026": {
+    "id": "tt0026",
+    "prev": "tt0025",
+    "next": "tt0027",
+    "type": "visualize",
+    "action": "dispatchCall"
+  },
+  "tt0027": {
+    "id": "tt0027",
+    "prev": "tt0026",
+    "next": "tt0028",
+    "type": "visualize",
+    "action": "moveViewToDispatch"
+  },
+  "tt0028": {
+    "id": "tt0028",
+    "prev": "tt0027",
+    "next": "tt0029",
+    "type": "visualize",
+    "action": "blinkDispatch"
+  },
+  "tt0029": {
+    "id": "tt0029",
+    "prev": "tt0028",
+    "next": "tt0030",
+    "type": "visualize",
+    "action": "moveToReducer",
+    "file": "f0010",
+    "selectedFile": ["f0010"],
+    "highlightLine": [12, 13, 14]
+  },
+  "tt0030": {
+    "id": "tt0030",
+    "prev": "tt0029",
+    "next": "tt0031",
+    "type": "visualize",
+    "action": "moveToDecrement"
+  },
+  "tt0031": {
+    "id": "tt0031",
+    "prev": "tt0030",
+    "next": "tt0032",
+    "type": "visualize",
+    "action": "updateCountInRedux",
+    "data": 0
+  },
+  "tt0032": {
+    "id": "tt0032",
+    "prev": "tt0031",
+    "next": "tt0033",
+    "type": "visualize",
+    "action": "moveStateToView",
+    "file": "f0009",
+    "selectedFile": ["f0009"],
+    "highlightLine": [6]
+  },
+  "tt0033": {
+    "id": "tt0033",
+    "prev": "tt0032",
+    "next": "tt0034",
+    "type": "visualize",
+    "action": "updateCountView",
+    "data": 0
+  },
+  "tt0034": {
+    "id": "tt0034",
+    "prev": "tt0033",
+    "next": null,
+    "type": "description",
+    "modalType": "tutorial_end",
+    "description": [{ "tag": "h2", "text": "Good job!" }],
+    "file": null
+  },
+
+  "pr0001": {
+    "id": "pr0001",
+    "prev": "tt0001",
+    "next": "pr0002",
+    "type": "description",
+    "modalType": "default",
+    "description": [
+      {
+        "tag": "h3",
+        "text": "다음 사항을 알고 있다고 가정합니다."
+      },
+      {
+        "tag": "ul",
+        "direction": "row",
+        "text": [
+          {
+            "tag": "li",
+            "text": "HTML 및 CSS"
+          },
+          {
+            "tag": "li",
+            "text": "ES6 구문 및 기능"
+          },
+          {
+            "tag": "li",
+            "text": "React에 대한 지식"
+          },
+          {
+            "tag": "p",
+            "text": "(JSX, State, Functional Component, Props 및 Hooks)"
+          },
+          {
+            "tag": "br"
+          }
+        ]
+      },
+      {
+        "tag": "h4",
+        "text": "해당 주제가 익숙하지 않다면 아래 링크에서 학습 후 진행하시는 것을 추천합니다."
+      },
+      {
+        "tag": "a",
+        "text": "링크 바로가기",
+        "href": "https://book.vanillacoding.co/starter-kit/"
+      }
+    ],
+    "file": null
+  },
+  "pr0002": {
+    "id": "pr0002",
+    "prev": "pr0001",
+    "next": "pr0003",
+    "type": "description",
+    "modalType": "default",
+    "description": [
+      { "tag": "h3", "text": "카운트 예제와 함께 Redux 연습 문제에 도전합니다." },
+      {
+        "tag": "div",
+        "direction": "row",
+        "text": [
+          { "tag": "p", "text": "+ 버튼을 클릭하면 count가 1씩 증가합니다." },
+          { "tag": "p", "text": "ㅡ 버튼을 클릭하면 count가 1씩 감소합니다." }
+        ]
+      }
+    ],
+    "file": null
+  },
+  "pr0003": {
+    "id": "pr0003",
+    "prev": "pr0002",
+    "next": "pr0004",
+    "type": "problem",
+    "file": "f0006",
+    "problemLine": 6,
+    "phrase": "counter: counterReducer",
+    "answer": "pa0002",
+    "selectedFile": ["f0006"]
+  },
+  "pr0004": {
+    "id": "pr0004",
+    "prev": "pr0003",
+    "next": "pr0005",
+    "type": "visualize",
+    "action": "showStore"
+  },
+  "pr0005": {
+    "id": "pr0005",
+    "prev": "pr0004",
+    "next": "pr0006",
+    "type": "visualize",
+    "action": "showReducerAndState"
+  },
+  "pr0006": {
+    "id": "pr0006",
+    "prev": "pr0005",
+    "next": "pr0007",
+    "type": "problem",
+    "file": "f0010",
+    "problemLine": 8,
+    "phrase": "reducers",
+    "answer": "pa0011",
+    "selectedFile": ["f0010"]
+  },
+  "pr0007": {
+    "id": "pr0007",
+    "prev": "pr0006",
+    "next": "pr0008",
+    "type": "problem",
+    "file": "f0010",
+    "problemLine": 10,
+    "phrase": "state.value += 1;",
+    "answer": "pa0007",
+    "selectedFile": ["f0010"]
+  },
+  "pr0008": {
+    "id": "pr0008",
+    "prev": "pr0007",
+    "next": "pr0009",
+    "type": "visualize",
+    "action": "showReducers"
+  },
+  "pr0009": {
+    "id": "pr0009",
+    "prev": "pr0008",
+    "next": "pr0010",
+    "type": "visualize",
+    "action": "showViewComponent"
+  },
+  "pr0010": {
+    "id": "pr0010",
+    "prev": "pr0009",
+    "next": "pr0011",
+    "type": "visualize",
+    "action": "showPath"
+  },
+  "pr0011": {
+    "id": "pr0011",
+    "prev": "pr0010",
+    "next": "pr0012",
+    "type": "problem",
+    "file": "f0009",
+    "selectedFile": ["f0009"],
+    "problemLine": 6,
+    "phrase": "state.counter.value",
+    "answer": "pa0015"
+  },
+  "pr0012": {
+    "id": "pr0012",
+    "prev": "pr0011",
+    "next": "pr0013",
+    "type": "visualize",
+    "action": "moveStateToView"
+  },
+  "pr0013": {
+    "id": "pr0013",
+    "prev": "pr0012",
+    "next": "pr0014",
+    "type": "visualize",
+    "action": "blinkCounter"
+  },
+  "pr0014": {
+    "id": "pr0014",
+    "prev": "pr0013",
+    "next": "pr0015",
+    "type": "problem",
+    "problemLine": 22,
+    "phrase": "dispatch(decrement())",
+    "answer": "pa0014"
+  },
+  "pr0015": {
+    "id": "pr0015",
+    "prev": "pr0014",
+    "next": "pr0016",
+    "type": "visualize",
+    "action": "showClickEvent"
+  },
+  "pr0016": {
+    "id": "pr0016",
+    "prev": "pr0015",
+    "next": "pr0017",
+    "type": "visualize",
+    "action": "dispatchCall"
+  },
+  "pr0017": {
+    "id": "pr0017",
+    "prev": "pr0016",
+    "next": "pr0018",
+    "type": "visualize",
+    "action": "moveViewToDispatch"
+  },
+  "pr0018": {
+    "id": "pr0018",
+    "prev": "pr0017",
+    "next": "pr0019",
+    "type": "visualize",
+    "action": "blinkDispatch"
+  },
+  "pr0019": {
+    "id": "pr0019",
+    "prev": "pr0018",
+    "next": "pr0020",
+    "type": "visualize",
+    "action": "moveToReducer",
+    "file": "f0010",
+    "selectedFile": ["f0010"],
+    "highlightLine": [12, 13, 14]
+  },
+  "pr0020": {
+    "id": "pr0020",
+    "prev": "pr0019",
+    "next": "pr0021",
+    "type": "visualize",
+    "action": "moveToDecrement"
+  },
+  "pr0021": {
+    "id": "pr0021",
+    "prev": "pr0020",
+    "next": "pr0022",
+    "type": "visualize",
+    "action": "updateCountInRedux",
+    "data": 0
+  },
+  "pr0022": {
+    "id": "pr0022",
+    "prev": "pr0021",
+    "next": "pr0023",
+    "type": "visualize",
+    "action": "moveStateToView",
+    "file": "f0009",
+    "selectedFile": ["f0009"],
+    "highlightLine": [6]
+  },
+  "pr0023": {
+    "id": "pr0023",
+    "prev": "pr0022",
+    "next": "pr0024",
+    "type": "visualize",
+    "action": "updateCountView",
+    "data": 0
+  },
+  "pr0024": {
+    "id": "pr0024",
+    "prev": "pr0023",
+    "next": null,
+    "type": "description",
+    "modalType": "practice_end",
+    "description": [{ "tag": "h2", "text": "Good job!" }],
+    "file": null
+  }
+}
