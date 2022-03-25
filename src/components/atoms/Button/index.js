@@ -8,7 +8,7 @@ import themes from "../../../styles/theme";
 
 const { colors } = themes;
 
-const Button = ({ startIcon, endIcon, text, hasHover, onClick, ...props }) => {
+const Button = ({ startIcon, endIcon, text, onClick, ...props }) => {
   return (
     <Container {...props} onClick={onClick}>
       {startIcon && startIcon}
@@ -91,20 +91,20 @@ const Container = styled.button`
     }
   }}
 
-  ${({ hasHover }) =>
+  ${({ theme, color, hasHover }) =>
     hasHover &&
     `
-    &:hover {
-      transform: scale(1.1);
-      border: 0.1rem solid ${(props) => props.color};
-      background-color: ${({ theme }) => theme.colors.white_1};
-      color: ${(props) => props.color};
-    }
-    &:active {
-      border: 0.1rem solid ${(props) => props.color};
-      background-color: ${({ theme }) => theme.colors.white_1};
-      color: ${(props) => props.color};
-    }
+      &:hover {
+        transform: scale(1.1);
+        border: 0.1rem solid ${color};
+        background-color: ${theme.colors.white_1};
+        color: ${color};
+      }
+      &:active {
+        border: 0.1rem solid ${color};
+        background-color: ${theme.colors.white_1};
+        color: ${color};
+      }
   `}
 `;
 
