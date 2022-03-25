@@ -92,7 +92,6 @@ const PracticeCodeEditor = ({ onAnswerDone }) => {
 
               if (foundIndex === 0) {
                 const restText = line.substring(phraseLength);
-                console.log("restText ===>", restText);
 
                 return (
                   <li id={id} key={id}>
