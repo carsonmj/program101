@@ -1,13 +1,14 @@
 import React from "react";
 
+import { noop } from "lodash";
 import PropTypes from "prop-types";
 import styled from "styled-components";
 
 import { Icon } from "../../atoms";
 
-const FileItem = ({ type, depth, name, id, selected }) => {
+const FileItem = ({ type, depth, name, id, selected, onClick }) => {
   return (
-    <Container depth={depth} id={id}>
+    <Container depth={depth} id={id} onClick={() => onClick(id, type)}>
       <Icon type={type} size="xs" />
       <TextWarrper selected={selected}>{name}</TextWarrper>
     </Container>
@@ -20,11 +21,13 @@ FileItem.propTypes = {
   name: PropTypes.string.isRequired,
   id: PropTypes.string.isRequired,
   selected: PropTypes.bool,
+  onClick: PropTypes.func,
 };
 
 FileItem.defaultProps = {
   depth: "0rem",
   selected: false,
+  onClick: noop,
 };
 
 export default FileItem;
@@ -35,6 +38,7 @@ const Container = styled.div`
   height: 2rem;
   padding: ${({ theme }) => theme.space.sm};
   padding-left: ${({ depth }) => `${1.5 * depth}rem`};
+  cursor: pointer;
 `;
 
 const TextWarrper = styled.p`

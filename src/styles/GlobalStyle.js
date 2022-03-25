@@ -57,6 +57,36 @@ p, pre, h1, h2, h3, h4, h5, h6 {
     border: 0.1rem solid #433B3B;
   }
 }
+@keyframes blink {
+  0% {
+    filter: drop-shadow(0.2rem 0.3rem 1rem yellow);
+  }
+  100% {
+    background: #ffc200c9;
+  }
+}
+@keyframes blink_practice {
+  100% {
+    filter: drop-shadow(0.2rem 0.3rem 1rem yellow);
+  }
+}
+@keyframes shake{
+  0%{
+      transform: rotate(0.5deg);
+    }
+  25%{
+    transform: rotate(-0.5deg);
+  }
+  50%{
+    transform: rotate(0.5deg);
+  }
+  75%{
+    transform: rotate(-0.5deg);
+  }
+  100%{
+    transform: rotate(0.5deg);
+  }
+}
 `;
 
 export default GlobalStyle;

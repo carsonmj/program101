@@ -876,7 +876,7 @@
     "prev": "pr0023",
     "next": null,
     "type": "description",
-    "modalType": "tutorial_end",
+    "modalType": "practice_end",
     "description": [{ "tag": "h2", "text": "Good job!" }],
     "file": null
   }

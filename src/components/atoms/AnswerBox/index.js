@@ -58,4 +58,8 @@ const Container = styled.div`
   color: ${({ theme }) => theme.colors.gray_1};
   text-align: center;
   cursor: pointer;
+  transform-origin: 50% 0%;
+  animation-name: shake;
+  animation-duration: 0.5s;
+  animation-iteration-count: infinite;
 `;

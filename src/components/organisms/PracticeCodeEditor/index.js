@@ -5,6 +5,7 @@ import { useSelector } from "react-redux";
 import styled from "styled-components";
 
 import { getCodeFileAPI } from "../../../apis";
+import useSound from "../../../hooks/useSound";
 
 const PracticeCodeEditor = ({ onAnswerDone }) => {
   const currentFile = useSelector((state) => state.file.currentFile);
@@ -12,6 +13,8 @@ const PracticeCodeEditor = ({ onAnswerDone }) => {
   const isCorrect = useSelector((state) => state.scenario.isCorrect);
   const [codes, setCodes] = useState(null);
   const [codeLines, setCodeLines] = useState(null);
+  const [playCorrectSound, stopCorrectSound] = useSound("/assets/correct.mp3", 1);
+  const [playWrongSound, stopWrongSound] = useSound("/assets/wrong.mp3", 1);
 
   const dragEnter = (e) => {
     e.target.style.opacity = 0.5;
@@ -35,8 +38,10 @@ const PracticeCodeEditor = ({ onAnswerDone }) => {
     if (isCorrect) {
       onAnswerDone(true);
       e.target.style.animation = "scaleUp 0.5s linear 1 forwards";
+      playCorrectSound();
     } else {
       onAnswerDone(false);
+      playWrongSound();
     }
   };
 
@@ -56,9 +61,20 @@ const PracticeCodeEditor = ({ onAnswerDone }) => {
   }, [currentFile]);
 
   useEffect(() => {
-    if (currentScenario.id === "pr0014") {
+    if (currentScenario?.id === "pr0014") {
       const $target = document.querySelector("#container");
-      $target.scrollBy({ top: "400px", behavior: "smooth" });
+      $target.scrollBy({
+        top: 500,
+        left: 0,
+        behavior: "smooth",
+      });
+
+      return;
+    }
+
+    if (currentScenario?.id === "pr0019") {
+      const $target = document.querySelector("#container");
+      $target.scrollTo(0, 0);
     }
   }, [currentScenario]);
 
@@ -76,7 +92,6 @@ const PracticeCodeEditor = ({ onAnswerDone }) => {
 
               if (foundIndex === 0) {
                 const restText = line.substring(phraseLength);
-                console.log("restText ===>", restText);
 
                 return (
                   <li id={id} key={id}>
@@ -166,6 +181,8 @@ const LineWrapper = styled.ul`
       border-radius: 2rem;
       background: ${({ theme }) => theme.colors.yellow_1};
       color: ${({ theme }) => theme.colors.yellow_1};
+      animation: blink_practice 0.6s linear infinite;
+      user-select: none;
     }
   }
 `;

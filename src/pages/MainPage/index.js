@@ -41,6 +41,7 @@ const MainPage = () => {
   };
 
   const handlePracticeStartButtonClick = () => {
+    dispatch(scenarioSliceActions.resetVisualizeAction());
     dispatch(scenarioSliceActions.updateMode("practice"));
     dispatch(scenarioSliceActions.updateCurrentScenario("pr0001"));
     dispatch(scenarioSliceActions.updateCurrent(scenarios.pr0001));
@@ -129,6 +130,19 @@ const MainPage = () => {
           </GreetingModal>,
         );
         break;
+      case "practice_end":
+        setContent(
+          <GreetingModal
+            onClickClose={handleModalCloseClick}
+            onClickLeftButton={handleTutorialStartButtonClick}
+            onClickRightButton={handlePracticeStartButtonClick}
+            leftText="Start Tutorial"
+            rigthText="Try Again"
+          >
+            {createDynamicElement(scenario.description)}
+          </GreetingModal>,
+        );
+        break;
       case "divide":
         setContent(
           <DivideModal
@@ -205,7 +219,7 @@ const MainPage = () => {
         codeContent={
           <CodeContentWrapper>
             <EditorWrapper mode={mode}>
-              <FileTree />
+              <FileTree isDone={currentId === "pr0024" || currentId === "tt0034"} />
               {mode === "tutorial" ? <CodeEditor /> : <PracticeCodeEditor onAnswerDone={setIsCorrectAnswer} />}
             </EditorWrapper>
             <AnswersWrapper mode={mode}>

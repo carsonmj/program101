@@ -22,6 +22,7 @@ Button.propTypes = {
   startIcon: PropTypes.node,
   endIcon: PropTypes.node,
   text: PropTypes.string,
+  hasHover: PropTypes.bool,
   onClick: PropTypes.func,
   size: PropTypes.string,
   margin: PropTypes.string,
@@ -33,6 +34,7 @@ Button.defaultProps = {
   startIcon: null,
   endIcon: null,
   text: "",
+  hasHover: true,
   onClick: noop,
   size: "sm",
   margin: "sm",
@@ -46,6 +48,7 @@ const Container = styled.button`
   background: ${(props) => props.color};
   border: none;
   color: ${(props) => props.textColor};
+  cursor: pointer;
 
   ${({ margin }) =>
     margin &&
@@ -57,7 +60,7 @@ const Container = styled.button`
     switch (size) {
       case "sm":
         return `
-          width: 8rem;
+          width: 9rem;
           height: 3rem;
           font-size: ${({ theme }) => theme.fontSizes.sm};
         `;
@@ -88,17 +91,21 @@ const Container = styled.button`
     }
   }}
 
-  &:hover {
-    transform: scale(1.1);
-    border: 0.1rem solid ${(props) => props.color};
-    background-color: ${({ theme }) => theme.colors.white_1};
-    color: ${(props) => props.color};
-  }
-  &:active {
-    border: 0.1rem solid ${(props) => props.color};
-    background-color: ${({ theme }) => theme.colors.white_1};
-    color: ${(props) => props.color};
-  }
+  ${({ theme, color, hasHover }) =>
+    hasHover &&
+    `
+      &:hover {
+        transform: scale(1.1);
+        border: 0.1rem solid ${color};
+        background-color: ${theme.colors.white_1};
+        color: ${color};
+      }
+      &:active {
+        border: 0.1rem solid ${color};
+        background-color: ${theme.colors.white_1};
+        color: ${color};
+      }
+  `}
 `;
 
 export default Button;

@@ -16,8 +16,8 @@ const GreetingModal = ({ children, onClickClose, onClickLeftButton, onClickRight
         {children}
         <Text>Redux Tutorial</Text>
         <ButtonWrapper>
-          <Button text={leftText} size="long" onClick={onClickLeftButton} />
-          <Button text={rigthText} size="long" onClick={onClickRightButton} />
+          <Button text={leftText} size="long" onClick={onClickLeftButton} hasHover={true} />
+          <Button text={rigthText} size="long" onClick={onClickRightButton} hasHover={true} />
         </ButtonWrapper>
       </Container>
     </Overlay>
