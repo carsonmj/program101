@@ -23,7 +23,7 @@ const MainPage = () => {
   const dispatch = useDispatch();
   const { scenarios, currentScenario: currentId, mode } = useSelector((state) => state.scenario);
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [content, setContent] = useState(<p />);
+  const [content, setContent] = useState();
   const currentScenario = currentId && scenarios[currentId];
   const [isCorrectAnswer, setIsCorrectAnswer] = useState("none");
 
