@@ -1,5 +1,3 @@
-import React from "react";
-
 const useSound = (url, volume = 1, repeat = 1) => {
   const sound = new Audio(url);
   sound.volume = volume;

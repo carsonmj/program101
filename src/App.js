@@ -2,10 +2,10 @@ import React, { useEffect } from "react";
 
 import { useDispatch } from "react-redux";
 
-import { MainPage } from "./pages";
-import { scenarioSliceActions } from "./modules/slices/scenarioSlice";
-import { fileSliceActions } from "./modules/slices/fileSlice";
 import useSound from "./hooks/useSound";
+import { fileSliceActions } from "./modules/slices/fileSlice";
+import { scenarioSliceActions } from "./modules/slices/scenarioSlice";
+import { MainPage } from "./pages";
 
 const App = () => {
   const dispatch = useDispatch();

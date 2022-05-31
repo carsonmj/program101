@@ -6,14 +6,14 @@ import styled from "styled-components";
 import { Icon, Image } from "../../components/atoms";
 import {
   Answers,
-  Visualization,
   CodeEditor,
-  FileTree,
-  StepProgressBar,
-  GreetingModal,
   DefaultModal,
-  PracticeCodeEditor,
   DivideModal,
+  FileTree,
+  GreetingModal,
+  PracticeCodeEditor,
+  StepProgressBar,
+  Visualization,
 } from "../../components/organisms";
 import { MainTemplate, TooltipModal } from "../../components/templates";
 import { fileSliceActions } from "../../modules/slices/fileSlice";

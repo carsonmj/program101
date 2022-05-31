@@ -3,9 +3,9 @@ import React from "react";
 import { useDispatch } from "react-redux";
 import styled from "styled-components";
 
-import { Button, Icon } from "../../atoms";
-import themes from "../../../styles/theme";
 import { scenarioSliceActions } from "../../../modules/slices/scenarioSlice";
+import themes from "../../../styles/theme";
+import { Button, Icon } from "../../atoms";
 
 const Header = () => {
   const dispatch = useDispatch();
