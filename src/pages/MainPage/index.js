@@ -6,14 +6,14 @@ import styled from "styled-components";
 import { Icon, Image } from "../../components/atoms";
 import {
   Answers,
-  Visualization,
   CodeEditor,
-  FileTree,
-  StepProgressBar,
-  GreetingModal,
   DefaultModal,
-  PracticeCodeEditor,
   DivideModal,
+  FileTree,
+  GreetingModal,
+  PracticeCodeEditor,
+  StepProgressBar,
+  Visualization,
 } from "../../components/organisms";
 import { MainTemplate, TooltipModal } from "../../components/templates";
 import { fileSliceActions } from "../../modules/slices/fileSlice";
@@ -23,7 +23,7 @@ const MainPage = () => {
   const dispatch = useDispatch();
   const { scenarios, currentScenario: currentId, mode } = useSelector((state) => state.scenario);
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [content, setContent] = useState(<p />);
+  const [content, setContent] = useState();
   const currentScenario = currentId && scenarios[currentId];
   const [isCorrectAnswer, setIsCorrectAnswer] = useState("none");
 
