@@ -16,6 +16,7 @@ import {
   Visualization,
 } from "../../components/organisms";
 import { MainTemplate, TooltipModal } from "../../components/templates";
+import { mode as studymode, scenarioId } from "../../constant";
 import { fileSliceActions } from "../../modules/slices/fileSlice";
 import { scenarioSliceActions } from "../../modules/slices/scenarioSlice";
 
@@ -32,7 +33,7 @@ const MainPage = () => {
   };
 
   const handleTutorialStartButtonClick = () => {
-    dispatch(scenarioSliceActions.updateMode("tutorial"));
+    dispatch(scenarioSliceActions.updateMode(studymode.TUTORIAl));
     const nextScenarioId = currentScenario.next;
     dispatch(scenarioSliceActions.updateCurrentScenario(nextScenarioId));
     dispatch(scenarioSliceActions.updateCurrent(scenarios[nextScenarioId]));
@@ -42,9 +43,9 @@ const MainPage = () => {
 
   const handlePracticeStartButtonClick = () => {
     dispatch(scenarioSliceActions.resetVisualizeAction());
-    dispatch(scenarioSliceActions.updateMode("practice"));
-    dispatch(scenarioSliceActions.updateCurrentScenario("pr0001"));
-    dispatch(scenarioSliceActions.updateCurrent(scenarios.pr0001));
+    dispatch(scenarioSliceActions.updateMode(studymode.PRACTICE));
+    dispatch(scenarioSliceActions.updateCurrentScenario(scenarioId.PRACTICE_1ST));
+    dispatch(scenarioSliceActions.updateCurrent(scenarios[scenarioId.PRACTICE_1ST]));
 
     setIsModalOpen(false);
   };
@@ -67,8 +68,8 @@ const MainPage = () => {
 
   const handleTutorialRestart = () => {
     dispatch(scenarioSliceActions.resetVisualizeAction());
-    dispatch(scenarioSliceActions.updateCurrentScenario("tt0002"));
-    dispatch(scenarioSliceActions.updateCurrent(scenarios.tt0002));
+    dispatch(scenarioSliceActions.updateCurrentScenario(scenarioId.TUTORIAL_2ND));
+    dispatch(scenarioSliceActions.updateCurrent(scenarios[scenarioId.TUTORIAL_2ND]));
   };
 
   const createDynamicElement = (elementList) => {
@@ -219,8 +220,8 @@ const MainPage = () => {
         codeContent={
           <CodeContentWrapper>
             <EditorWrapper mode={mode}>
-              <FileTree isDone={currentId === "pr0024" || currentId === "tt0034"} />
-              {mode === "tutorial" ? <CodeEditor /> : <PracticeCodeEditor onAnswerDone={setIsCorrectAnswer} />}
+              <FileTree isDone={currentId === scenarioId.PRACTICE_END || currentId === scenarioId.TUTORIAL_END} />
+              {mode === studymode.TUTORIAl ? <CodeEditor /> : <PracticeCodeEditor onAnswerDone={setIsCorrectAnswer} />}
             </EditorWrapper>
             <AnswersWrapper mode={mode}>
               <Answers isCorrectAnswer={isCorrectAnswer} onIsCorrectAnswerChnage={setIsCorrectAnswer} />
