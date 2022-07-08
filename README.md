@@ -1,70 +1,127 @@
-# Getting Started with Create React App
+## 목차
+- [📃 프로젝트 소개](#-프로젝트-소개)
+  - [💻 PROGRAM101이란?](#--PROGRAM101이란?)
+  - [☀️ 동기](#-동기)
+  - [⛳️ 실행 방법](#-실행-방법)
+  - [⚙️ 기술과 기술을 채택한 이유](#-기술과-기술을-채택한-이유)
+  - [🗓 프로젝트 일정](#-프로젝트-일정)
+- [🎢 도전 방향](#-도전-방향)
+- [🚖 앞으로의 방향](#-앞으로의-방향)
+- [🥁 프로젝트 소감](#-프로젝트-소감)
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+---
+<br>
 
-## Available Scripts
+## 📃 프로젝트 소개
+### 💻 PROGRAM101이란? [🔗 사이트 바로가기](https://program101.netlify.app/)
+**튜토리얼과 함께 Redux 시각적으로 파악해보자! 코드와 함께 Redux 흐름 빠르게 이해해보자!** 
 
-In the project directory, you can run:
+PROGRAM101은 Redux 학습 툴로 좌측에는 시각화 화면을 확인할 수 있고 우측에는 코드와 함께 설명을 제공합니다. 사용자는 튜토리얼 모드와 연습 모드를 선택하여 Redux를 학습할 수 있습니다.
 
-### `npm start`
+- 튜토리얼 모드
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+  Redux를 처음 접하는 사용자에게 적합합니다. Redux가 무엇인지, 어떻게 동작하는지 단계별로 설명이 제공됩니다.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+- 연습 모드
 
-### `npm test`
+  Redux 기초를 아는 사용자에게 적합합니다. 퀴즈 형식으로 진행되며 해당 빈칸에 알맞은 코드를 선택하여 문제를 맞춰야 합니다.
+<div>
+  <img width="240" alt="program1" src="https://user-images.githubusercontent.com/54696956/178020552-87f602a5-6043-4938-9cf9-be8579e3e738.png">
+  <img width="240" alt="program2" src="https://user-images.githubusercontent.com/54696956/178020572-eb0658d7-476b-420d-a64c-b5f7acc317dd.gif">
+</div>
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+<br>
 
-### `npm run build`
+### ☀️ 동기
+**도움이 되는 일에 기여**
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+  비교적 러닝커브가 높은 Redux를 시각화하여 쉽게 흐름을 이해할 수 있는 유용한 학습 툴을 만들고 싶었습니다. 처음 Redux를 접했을 때, 각각의 역할은 이해가 되었지만 view와 어떻게 연결되는지 어떤 흐름으로 흘러가는지 단번에 이해하고 활용하기가 어려웠던 경험이 떠올랐습니다. 코드, 그리고 설명과 함께 추상적인 개념을 시각화하여 보여주는 튜토리얼을 제공하여 처음 접하는 사람들이 흥미를 느끼면서 Redux를 학습할 수 있도록 돕고 싶습니다.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+**흥미로웠던 Redux의 아키텍처**
 
-### `npm run eject`
+  처음 Redux를 공부할 때 Redux가 어떻게 탄생하게 되었는지, 어떤 아키텍처를 도입하여 기존의 문제를 해결하려고 하는지 찾아봤을 때 매우 흥미로웠습니다. 기존의 문제를 해결하기 위해 단방향 데이터 흐름을 적용하고, 이런 철학을 적용하여 구현체를 만들어 내는 것이 대단하다고 느꼈습니다. 순수함수를 지향하면서 예측가능한 코드를 구성한다는 것을 알았을 때 굉장히 매력적이라고 생각했습니다. 흥미로웠던 주제로 개인프로젝트를 기획하고 못해본 것들을 해보는 기회를 갖고자 Redux 시각화 학습툴 아이디어를 생각하게 되었습니다.
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+**디자인에 대한 자신감 키우기**
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+매주 과제를 하면서 간단하게 CSS를 추가하여 연습하였지만 투자한 시간만큼 원하는대로 컨트롤이 되지 않아 자신감도 없고 어려움이 많았었는데, 시각화 프로젝트를 진행하면서 극복하고 싶었습니다. 사용자에게 자연스러운 흐름을 보여주기 위해서 스타일이나 기획, 시나리오 구성 등 익숙하지 않은 영역에 도전할 수 있을 것 같아 해당 프로젝트를 기획하였습니다. 특히 animation을 깊게 다뤄보지 않아서 이번 기회에 animation을 많이 다뤄보고 싶었습니다.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+<br>
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+### ⛳️ 실행 방법
+1. 프로젝트 다운로드 후 프로젝트 디렉토리에서 아래 명령어 입력
+```
+npm install
+```
+2. 프로젝트 실행
+```
+npm start
+```
+3. 브라우저에서 확인
+```
+http://localhost:3000
+```
 
-## Learn More
+<br>
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+### ⚙️ 기술 스택을 채택한 이유
+**React**
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+중복되는 컴포넌트를 줄이고, 애플리케이션과 분리하여 컴포넌트를 개발하고 테스트할 수 있는 장점이 있는 atomic design으로 react를 구성하였습니다. 특히 Redux 튜토리얼 뿐만 아니라, JavaScript, React 등등 여러 주제로 확장 시켜갈 수 있는 프로젝트이기에 컴포넌트 구조화를 잘 해둔다면 기능 확장에 매우 유리할 것이라고 생각했습니다. 
 
-### Code Splitting
+**styped-component**
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+JavaScript 환경을 최대한 활용하여 CSS를 적용할 수 있습니다. 컴포넌트 별로 CSS 스코프를 가질 수 있고, props를 활용하여 조건부 스타일링이 가능합니다. 특히 시각화를 효과적으로 나타내기 위해 Animation 효과가 여러군데 필요하고 흐름 별로 animation을 제어하기 위해 styled-component의 props를 적극 사용하기로 결정하였습니다. 
 
-### Analyzing the Bundle Size
+**Redux**
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+전역 상태관리를 위해 Redux를 도입하였습니다. 현재 사용자가 어떤 단계에 있는지, 어떤 문제에 정답을 맞췄는지 등 컴포넌트 간 공유해야할 state를 전역으로 관리하기 위해 Redux를 사용하였습니다.
 
-### Making a Progressive Web App
+**Reduex-Saga**
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+현재 프로젝트 규모만을 생각했을 때는 redux 미들웨어가 필연적이진 않지만, 지속적으로 프로젝트를 확장해나갈 때 side-effect 처리를 위해 미들웨어 사용이 필요하다고 판단했습니다. future plan 이지만, 소켓을 사용한 대결모드 추가, 사용자의 학습 분석 등 side-effect를 처리하기 위해 redux-saga를 도입하였습니다.
 
-### Advanced Configuration
+action 생성 함수가 plain object를 반환하기 때문에 action을 순수한 상태로 관리할 수 있고, 부주의로 인한 api의 중복 호출 상황에서 가장 마지막 request만 반영되게 하는 기능 등 saga를 사용함으로써 얻을 수 있는 장점이 많다고 생각했습니다.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+<br>
 
-### Deployment
+### 🗓 프로젝트 일정
+**총 기간 : 2021/02/21 ~ 2021/03/11 (3주)**
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+- **기획**: 2021/02/21 ~ 2021/02/25 (1주)
+    - 1주차 아이디어 수립, 시나리오 작성, Mockup 작업, Repository setting
+    
+- **개발**: 2021/02/26 ~ 2021/03/11 (2주)
+    - 2주차 컴포넌트 작업, 데이터 연결 작업, Tutorial Mode 작업
+    - 3주차 애니메이션 작업, Practice Mode 작업, 배포, 문서 작성, 테스트 코드 작성
 
-### `npm run build` fails to minify
+<br>
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+## 🎢 도전 방향
+**라이브러리에 의존하지 않고 최대한 많이 직접 구현해보기**  
+이번 프로젝트의 목표는 외부 라이브러리에 의존하지 않고 모든 요소를 직접 구현해보는 것이었습니다. Animation, Code Editor, Folder Tree, Drag and Drop, Step progress bar 등을 관련 API를 사용하여 구성하거나 알맞은 자료 구조, 알고리즘을 활용하여 원하는 방식으로 표현하기 위해 많은 시간을 투자했습니다.  
+
+
+**다양한 형식의 modal 콘텐츠**  
+처음에는 간단하게 여러 개의 modal 컴포넌트를 생성하여 수십가지의 modal을 보여주는 방식으로 접근하여 코드를 구성하였습니다. 하지만 각 modal마다 위치와 콘텐츠가 다를 뿐, 대부분의 modal은 같은 모양의 프레임을 사용하고 있었고 조금 더 효율적으로 modal을 나타낼 방법이 필요했습니다. 이때 React는 createElement API를 사용하여 element에 대한 정보를 Object로 관리하고 내부에서 파싱되고 트랜스 파일링된다는 내용이 떠올라 아이디어를 얻어 비슷한 방식으로 구조를 변경했습니다. 시나리오에는 modal의 타입, 위치, children의 정보를 Object 형식으로 관리하고 해당 정보의 modal을 렌더할 때 Object 정보를 분석하여 동적으로 modal을 나타낼 수 있도록 개선하였습니다.
+
+**시나리오 구성**  
+사용자에게 교육 목적으로 정보를 전달하는 프로젝트를 기획하면서 어떤 방식과 어떤 내용으로 사이트를 구성해야 사용자가 조금 더 쉽게 해당 개념에 접근할 수 있을지 고민하는 과정이 길어졌습니다. 또한, 정확한 정보를 전달해야 했기에 콘텐츠 내용도 꼼꼼히 검수하고 여러번 체크해야 했습니다. 대략적인 기획과 Mockup UI로는 정확히 어떤 순서로 어떤 정보를 제공할 것인지 정리가 되지 않았습니다. 이부분에서 명확하고 촘촘하게 기획하기 위해 모든 시나리오의 순서, 내용을 정리하고 해당 내용을 바탕으로 flowchart을 생성하여 흐름을 정리했습니다. flowchart의 내용대로 Mockup UI를 다시 정비하면서 도형의 위치, modal의 위치, 흐름을 명확하게 정의할 수 있었습니다.
+<div style="text-align: center">
+   <img width="240" alt="program2" src="https://user-images.githubusercontent.com/54696956/178033830-5e08f721-c4bb-481c-8a89-fcdb5296b83e.svg">
+</div>
+
+
+<br>
+
+## 🚖 앞으로의 방향
+1. Redux middleware(thunk, saga)에 대한 시각화, javaScript 기초, React 기초 등 코드와 함께 시각적으로 개념을 알려주는 사이트를 구성하여 프로그래밍을 시작하는 사람들에게 단계적으로 교육을 제공
+
+2. 소켓을 사용한 대결모드 추가, 사용자의 학습 분석 기능 추가하여 흥미 유발 증가
+
+<br>
+
+## 🥁 프로젝트 소감
+처음 개인 프로젝트를 기획하던 날, 열망에 가득 차 다양한 기능을 생각해보고 더 크게 확장시켜야 봐야겠다는 욕심을 내보기도 하고 프로그래밍을 공부하는 사람들에게 큰 도움을 줄 수 있는 프로젝트를 만들어봐야겠다는 라는 당찬 포부를 가지고 구상하던 순간이 떠오릅니다. 
+
+이전에 Redux를 공부할 때, 단방향 데이터 흐름으로 예측 가능한 구조를 만든다는 것이 매우 흥미로웠고, Redux가 어떻게 등장하게 되었고 어떤 아키텍처로 기존의 문제를 해결하려고 했는지 알게 되었을 때 사고를 확장시킬 수 있는 계기가 되었습니다. 이런 경험을 다른 사람과 나누고 싶어서 시작한 프로젝트이기 때문에 기획 단계부터 고민이 많아져 몇 번이고 기획을 수정했었습니다. 사용자 경험을 높이면서 쉽게 파악할 수 있도록 화면을 구성하고 싶었기에 Mockup UI도 여러 버전을 생성하고 마지막 날까지 수정하며 기획에 공을 들였습니다. 기획 단계에서 디자인의 중요성은 물론 튼튼한 구조를 잡기 위해서는 많은 내공과 고민이 필요하다는 것을 몸소 느끼게 되었습니다. 개발 단계에서도 구조가 꼬이면서 다시 개발을 진행하기도 하고, 코드를 작성하는 시간보다 고민하는 시간이 늘어나기도 하면서 구조를 파악하고 단단한 프로젝트를 설계해나가는 중요성에 대해 깨닫게 되었습니다. 설계를 잘하려면 많은 경험과 함께 연습이 필요하다는 것도 확실히 느끼게 되었습니다. 이번 프로젝트를 진행하면서 기술적인 성장과 함께 앞으로 어떤 연습을 하고 어떤 방향으로 학습해야 하는지 제대로 배운 것 같아 뜻깊은 경험이었습니다.

@@ -1,7 +1,7 @@
 import { combineReducers } from "redux";
 
-import scenarioReducer from "./slices/scenarioSlice";
 import fileReducer from "./slices/fileSlice";
+import scenarioReducer from "./slices/scenarioSlice";
 
 const rootReducer = combineReducers({
   scenario: scenarioReducer,

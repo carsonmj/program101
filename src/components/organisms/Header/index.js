@@ -3,23 +3,24 @@ import React from "react";
 import { useDispatch } from "react-redux";
 import styled from "styled-components";
 
-import { Button, Icon } from "../../atoms";
-import themes from "../../../styles/theme";
+import { scenarioId, mode } from "../../../constant";
 import { scenarioSliceActions } from "../../../modules/slices/scenarioSlice";
+import themes from "../../../styles/theme";
+import { Button, Icon } from "../../atoms";
 
 const Header = () => {
   const dispatch = useDispatch();
 
   const handleTutorialRestart = () => {
     dispatch(scenarioSliceActions.resetVisualizeAction());
-    dispatch(scenarioSliceActions.updateMode("tutorial"));
-    dispatch(scenarioSliceActions.updateCurrentScenario("tt0001"));
+    dispatch(scenarioSliceActions.updateMode(mode.TUTORIAl));
+    dispatch(scenarioSliceActions.updateCurrentScenario(scenarioId.TUTORIAL_1ST));
   };
 
   const handlePracticeStartButtonClick = () => {
     dispatch(scenarioSliceActions.resetVisualizeAction());
-    dispatch(scenarioSliceActions.updateMode("practice"));
-    dispatch(scenarioSliceActions.updateCurrentScenario("pr0001"));
+    dispatch(scenarioSliceActions.updateMode(mode.PRACTICE));
+    dispatch(scenarioSliceActions.updateCurrentScenario(scenarioId.PRACTICE_1ST));
   };
 
   return (

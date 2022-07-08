@@ -4,13 +4,19 @@ import PropTypes from "prop-types";
 import { useSelector } from "react-redux";
 import styled from "styled-components";
 
+import { scenarioId } from "../../../constant";
+
 const StepProgressBar = ({ labels }) => {
   const current = useSelector((state) => state.scenario.currentScenario);
   const [progressStatus, setProgressStatus] = useState({});
   const [progressPersentage, setProgressPersentage] = useState(0);
 
   useEffect(() => {
-    if (current === "tt0001" || current === "tt0002" || current === "pr0001") {
+    if (
+      current === scenarioId.TUTORIAL_1ST ||
+      current === scenarioId.TUTORIAL_2ND ||
+      current === scenarioId.PRACTICE_1ST
+    ) {
       setProgressStatus({ 0: "stroke" });
       setProgressPersentage(0);
       return;
