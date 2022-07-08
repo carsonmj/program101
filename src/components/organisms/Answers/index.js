@@ -45,7 +45,6 @@ const Answers = ({ isCorrectAnswer, onIsCorrectAnswerChnage }) => {
       </Body>
       <Footer>
         <Test isCorrect={isCorrectAnswer}>{result}</Test>
-        {/* <buttom>hint</buttom> */}
       </Footer>
     </Container>
   );
